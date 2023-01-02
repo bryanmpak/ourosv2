@@ -30,7 +30,7 @@ export default function Navbar() {
         </svg>
         {router.pathname === "/" ? <div className={activeMarker}></div> : null}
       </Link>
-      <Link href="/pomodoro" className={linkCSS}>
+      <Link href="/timer" className={linkCSS}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -45,7 +45,7 @@ export default function Navbar() {
             d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        {router.pathname === "/pomodoro" ? (
+        {router.pathname === "/timer" ? (
           <div className={activeMarker}></div>
         ) : null}
       </Link>
