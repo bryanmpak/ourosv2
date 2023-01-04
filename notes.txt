@@ -1,0 +1,33 @@
+https://www.youtube.com/watch?v=cwqNAkwhKqw&t=2024s&ab_channel=ILWYennefer
+
+npm or yarn:
+  package-lock.json = npm
+  package.json = yarn
+
+preference: semantic html (vs just a bunch of divs)
+
+APIs:
+
+Path (URL)
+  comprised of BaseURL & Endpoint
+
+Methods: what request 
+  GET: getting data
+  POST: adding new data
+    fetch("url", {
+      method: "POST",
+      body: "" 
+    })
+  PUT: updating existing data
+  DELETE: removing data
+  Others (PATCH, OPTIONS, etc)
+
+  in code:
+  fetch("https://apis.scrimba.com/jsonplaceholder/todos", {method: "POST", body})
+    fetch(BaseURL+Endpoint, {method: "GET/POST/PUT/DELETE", xyz})
+
+Body: data we want to send to server (for POST & PUT requests)
+  data needs to be JSON first
+
+Headers: metadata about outgoing request
+  ie auth, body info, client info, etc

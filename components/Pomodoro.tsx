@@ -1,3 +1,5 @@
+// need to test
+
 import {
   addDoc,
   collection,
@@ -5,11 +7,13 @@ import {
   serverTimestamp,
 } from "firebase/firestore"
 import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import {
   buildStyles,
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar"
+import { db } from "../firebaseConfig"
+import { Context } from "./UserContext"
 
 export default function Pomodoro() {
   interface Session {
@@ -33,11 +37,7 @@ export default function Pomodoro() {
   const [mode, setMode] = useState<string>("work")
   const [isTimeLengthShort, setIsTimeLengthShort] = useState<boolean>(true)
   const [dailyStreak, setDailyStreak] = useState<number>(0)
-
-  // timer lifecycle:
-  // click to start (isTimerRunning===true && mode===work) ->
-  // run workTime (useEffect, setTimeout) ->
-  // when 0, run breakTime
+  const { user } = useContext(Context)
 
   function handleClick() {
     setIsTimerRunning((prevState) => !prevState)
@@ -46,11 +46,25 @@ export default function Pomodoro() {
   function switchMode() {
     setMode((prevMode) => (prevMode === "work" ? "break" : "work"))
     mode === "work" ? setTimer(breakTime) : setTimer(workTime)
-    // const docRef = addDoc(collection(db, `${userState}/data/timer`), {
-    //   timestamp: serverTimestamp(),
-    //   author: userState,
-    //   children: workTime,
-    // })
+    const docRef = addDoc(collection(db, `${user}/data/timer`), {
+      timestamp: serverTimestamp(),
+      author: user,
+      children: workTime,
+    })
+  }
+
+  async function getDailyStreak() {
+    // query firebase firestore
+    const today = new Date().setHours(0, 0, 0, 0) / 1000
+    const querySnapshot = await getDocs(collection(db, `${user}/data/timer`))
+    const docArr = []
+    querySnapshot.forEach((doc) => {
+      if (doc.data().timestamp.seconds > today) {
+        docArr.push(doc.data())
+      }
+    })
+    const sum = docArr.reduce((acc, o) => acc + parseInt(o.children), 0)
+    setDailyStreak(sum)
   }
 
   function endCycle() {
@@ -88,7 +102,6 @@ export default function Pomodoro() {
     if (secs < 10) secs = "0" + secs
     return mins + ":" + secs
   }
-
   const valPerc =
     mode === "work" ? (timer / workTime) * 100 : (timer / breakTime) * 100
   const toggleCSS = isTimeLengthShort ? "justify-start" : "justify-end"
