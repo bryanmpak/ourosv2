@@ -6,16 +6,21 @@ import { Editable, ReactEditor, Slate, withReact } from "slate-react"
 import { db } from "../firebaseConfig"
 import { Context } from "./UserContext"
 
-// type CustomElement = { type: "paragraph"; children: CustomText[] }
-// type CustomText = { text: string; bold: true }
+type CustomElement = { type: "paragraph"; children: CustomText[] }
+type CustomText = {
+  text: string
+  bold?: boolean
+  italic?: boolean
+  underline?: boolean
+}
 
-// declare module "slate" {
-//   interface CustomTypes {
-//     Editor: BaseEditor & ReactEditor
-//     Element: CustomElement
-//     Text: CustomText
-//   }
-// }
+declare module "slate" {
+  interface CustomTypes {
+    Editor: BaseEditor & ReactEditor
+    Element: CustomElement
+    Text: CustomText
+  }
+}
 
 const HOTKEYS = {
   "mod+b": "bold",
