@@ -1,6 +1,7 @@
 import Header from "./Header"
 import Navbar from "./Navbar"
-import { ReactNode } from "react"
+import { ReactNode, useContext } from "react"
+import { Context } from "./UserContext"
 
 type Props = {
   children?: ReactNode
@@ -8,11 +9,17 @@ type Props = {
 }
 
 const Layout: React.FC = ({ children }: Props) => {
-  const bgColor: string =
-    "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-700 via-zinc-900 to-black"
+  const { user } = useContext(Context)
+
+  const toggleBg =
+    user === "pak"
+      ? "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-700 via-zinc-900 to-black"
+      : "bg-gradient-to-t from-rose-200 via-rose-200 to-rose-300"
+
+  const toggleTheme = user === "pak" ? "theme-pak" : "theme-mar"
 
   return (
-    <div className={`${bgColor} theme-pak`}>
+    <div className={`${toggleBg} ${toggleTheme}`}>
       <div className="max-w-xl flex flex-col m-auto h-screen p-4">
         <Header />
         <div className="grow p-4">{children}</div>

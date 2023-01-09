@@ -1,6 +1,11 @@
 import { motion } from "framer-motion"
+import { useContext } from "react"
+import { Context } from "./UserContext"
 
 export default function Header() {
+  const { user, toggleUser } = useContext(Context)
+
+  const toggleCSS = user === "pak" ? "justify-start" : "justify-end"
   return (
     <div className="flex gap-6 md:gap-12 p-2">
       <div className="text-5xl tracking-tighter text-title">
@@ -9,7 +14,13 @@ export default function Header() {
       </div>
       <div className="w-full h-4 border-t mt-7"></div>
       <div className="mt-3">
-        <div className="flex cursor-pointer rounded-full p-[2px] bg-dark border-neutral border-2 w-[60px] h-[30px] justify-start items-center">
+        <div
+          className={
+            "flex cursor-pointer rounded-full p-[2px] bg-dark border-neutral border-2 w-[60px] h-[30px] items-center " +
+            toggleCSS
+          }
+          onClick={() => toggleUser()}
+        >
           <motion.div
             className="bg-neutral border-light border-2 w-[24px] h-[24px] rounded-full"
             layout

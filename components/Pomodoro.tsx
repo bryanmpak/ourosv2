@@ -117,7 +117,7 @@ export default function Pomodoro() {
         DAILY STREAK: {convertHMS(dailyStreak)}
       </div>
       <motion.div
-        className="cursor-pointer w-[80%] m-auto"
+        className="cursor-pointer w-[70%] m-auto"
         onClick={() => handleClick()}
         whileHover={{
           scale: 1.025,
@@ -134,6 +134,7 @@ export default function Pomodoro() {
           styles={buildStyles({
             pathColor: mode === "work" ? "#F86F72" : "#50933F",
             trailColor: "transparent",
+            strokeLinecap: "rounded",
           })}
         >
           <div className="text-7xl mt-2 text-title">{convertHMS(timer)}</div>

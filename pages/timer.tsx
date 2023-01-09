@@ -1,5 +1,5 @@
 import Pomodoro from "../components/Pomodoro"
 
-export default function timer() {
+export default function Timer() {
   return <Pomodoro />
 }
