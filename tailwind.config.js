@@ -13,6 +13,7 @@ module.exports = {
         light: "var(--color-light)",
         neutral: "var(--color-neutral)",
         dark: "var(--color-dark)",
+        shadow: "var(--color-shadow)",
       },
       boxShadow: {
         glassmorphism: "0 8px 32px 0 rgba( 75, 85, 99, 0.37 )",

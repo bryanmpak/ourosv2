@@ -7,7 +7,7 @@
     font-family: "Kumbh Sans", sans-serif;
   }
   body {
-    background: black;
+    background: .theme-mar;
   }
 }
 
@@ -18,6 +18,7 @@
   --color-light: theme("colors.zinc.700");
   --color-neutral: theme("colors.zinc.800");
   --color-dark: #1a1a1a;
+  --color-shadow: #f7ba2b;
 }
 
 .theme-mar {
@@ -27,4 +28,5 @@
   --color-light: theme("colors.rose.300");
   --color-neutral: theme("colors.rose.300");
   --color-dark: theme("colors.rose.200");
+  --color-shadow: #aae3ea;
 }
