@@ -6,21 +6,15 @@ import { db } from "../firebaseConfig"
 import parse from "html-react-parser"
 
 export default function Goals() {
-  const [goals, setGoals] = useState("")
+  const [goals, setGoals] = useState([])
   const { user } = useContext(Context)
 
   async function getDocument() {
     const docArr = []
-    const q = query(
-      collection(db, `${user === "pak" ? "mar" : "pak"}/data/goals`),
-      orderBy("timestamp", "desc"),
-      limit(1)
-    )
-    const querySnapshot = await getDocs(q)
-    const queryPromise = querySnapshot.forEach((doc) => {
+    const querySnapshot = await getDocs(collection(db, "goals"))
+    querySnapshot.forEach((doc) => {
       docArr.push(doc.data())
     })
-    const docData = docArr[0]
 
     const serialize = (node) => {
       if (Text.isText(node)) {
@@ -46,14 +40,16 @@ export default function Goals() {
           return children
       }
     }
-    setGoals(serialize(docData))
+    const test = docArr.map((doc) => serialize(doc))
+    setGoals(test)
   }
 
   getDocument()
 
   return (
     <div className="text-title font-sans p-4 overflow-scroll text-sm">
-      {parse(goals)}
+      {parse(goals[0])}
+      {parse(goals[1])}
     </div>
   )
 }

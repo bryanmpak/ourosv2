@@ -16,7 +16,7 @@ module.exports = {
         shadow: "var(--color-shadow)",
       },
       boxShadow: {
-        glassmorphism: "0 8px 32px 0 rgba( 75, 85, 99, 0.37 )",
+        glassmorphism: "0 2px 32px 0 rgba( 75, 85, 99, 0.37 )",
       },
     },
   },

@@ -59,7 +59,7 @@ export default function TextInput() {
   }
 
   function saveGoals() {
-    const docRef = addDoc(collection(db, `${user}/data/goals`), {
+    const docRef = addDoc(collection(db, `goals`), {
       timestamp: serverTimestamp(),
       author: user,
       children: text,

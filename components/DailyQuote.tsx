@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react"
-import { Cursor, useTypewriter } from "react-simple-typewriter"
+import { useTypewriter, Cursor } from "react-simple-typewriter"
 
 interface QuoteState {
   text: string
-  author: string
+  author?: string
 }
 
 export default function DailyQuote() {
-  const [dailyQuote, setDailyQuote] = useState<any>({
+  const [dailyQuote, setDailyQuote] = useState<QuoteState>({
     text: "",
     author: "",
   })
-  const [text, count] = useTypewriter({
-    words: [dailyQuote.text],
-    delaySpeed: 1000,
+
+  const [text] = useTypewriter({
+    words: ["dailyQuote.text"],
+    delaySpeed: 2000,
   })
 
   useEffect(() => {

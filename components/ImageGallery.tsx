@@ -26,7 +26,7 @@ export default function ImageGallery() {
   const imgEl = photoUrl.map((photo, i) => (
     <div
       key={i}
-      className=" bg-gradient-to-l from-shadow to-[#ea5358] shadow-glassmorphism shadow-shadow backdrop-blur-l rounded-lg p-[2px] md:p-1"
+      className=" bg-shadow shadow-glassmorphism shadow-shadow backdrop-blur-l rounded-lg p-[2px] md:p-1"
     >
       <div className="flex items-center bg-black h-full w-full rounded-md p-1">
         <Image
