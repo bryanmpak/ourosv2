@@ -1,5 +1,3 @@
-// need to test
-
 import {
   addDoc,
   collection,
@@ -30,13 +28,13 @@ export default function Pomodoro() {
     breakTime: 10 * 60,
   }
 
-  const [workTime, setWorkTime] = useState<number>(SHORT_SESSION.workTime)
-  const [breakTime, setBreakTime] = useState<number>(SHORT_SESSION.breakTime)
-  const [timer, setTimer] = useState<number>(SHORT_SESSION.workTime)
-  const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false)
-  const [mode, setMode] = useState<string>("work")
-  const [isTimeLengthShort, setIsTimeLengthShort] = useState<boolean>(true)
-  const [dailyStreak, setDailyStreak] = useState<number>(0)
+  const [workTime, setWorkTime] = useState(SHORT_SESSION.workTime)
+  const [breakTime, setBreakTime] = useState(SHORT_SESSION.breakTime)
+  const [timer, setTimer] = useState(SHORT_SESSION.workTime)
+  const [isTimerRunning, setIsTimerRunning] = useState(false)
+  const [mode, setMode] = useState("work")
+  const [isTimeLengthShort, setIsTimeLengthShort] = useState(true)
+  const [dailyStreak, setDailyStreak] = useState(0)
   const { user } = useContext(Context)
 
   function handleClick() {
