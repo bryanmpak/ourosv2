@@ -8,7 +8,7 @@ type Props = {
   // importing type "ReactNode" seems to have solved the 'intrinsic elements // returns obj // etc' errors
 }
 
-const Layout: React.FC = ({ children }: Props) => {
+const Layout = ({ children }: Props) => {
   const { user } = useContext(Context)
 
   const toggleBg =

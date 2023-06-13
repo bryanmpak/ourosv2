@@ -41,7 +41,7 @@ const initialValue: Descendant[] = [
 
 export default function TextInput() {
   const [editor] = useState(() => withReact(createEditor()))
-  const [text, setText] = useState("")
+  const [text, setText] = useState<Descendant[]>()
   const [editorValue, setEditorValue] = useState(initialValue)
   const { user } = useContext(Context)
 
