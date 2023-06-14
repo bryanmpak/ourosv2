@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const Countdown: React.FC = () => {
+const Countdown = () => {
   const currentDate: any = new Date()
   const targetDate: any = new Date("2023-02-22 00:00")
   const timeDiffHrs: number = Math.ceil(
