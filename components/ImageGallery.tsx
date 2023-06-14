@@ -21,7 +21,8 @@ export default function ImageGallery() {
   }, [])
 
   // ttd:
-  // in map, index=1 & 8 = grid_column = 2, grid_row = 2
+  // in map,
+  // index=1 & 8 = grid_column = 2, grid_row = 2
 
   const imgEl = photoUrl.map((photo, i) => (
     <div
