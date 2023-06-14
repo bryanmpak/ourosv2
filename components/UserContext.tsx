@@ -2,7 +2,11 @@ import { createContext, useEffect, useState } from "react"
 
 const Context = createContext(null)
 
-function UserContext({ children }) {
+type Props = {
+  children: React.ReactNode
+}
+
+function UserContext({ children }: Props) {
   const [user, setUser] = useState("pak")
 
   useEffect(() => {
