@@ -58,15 +58,6 @@ export default function TextInput() {
     setEditorValue(initialValue)
   }
 
-  function saveGoals() {
-    const docRef = addDoc(collection(db, `goals`), {
-      timestamp: serverTimestamp(),
-      author: user,
-      children: text,
-    })
-    setEditorValue(initialValue)
-  }
-
   return (
     // change this div structure to (main div = text div + button div )
     <div className="flex flex-col font-sans h-full">
@@ -107,12 +98,6 @@ export default function TextInput() {
           onClick={() => saveLetter()}
         >
           send ❤️
-        </button>
-        <button
-          className="my-3 h-10 w-1/4 border-neutral border-2 rounded-xl font-sans text-text text-sm hover:bg-neutral"
-          onClick={() => saveGoals()}
-        >
-          submit 🎯
         </button>
       </div>
     </div>

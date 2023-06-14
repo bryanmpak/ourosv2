@@ -1,5 +1,5 @@
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { Text } from "slate"
 import { Context } from "../components/UserContext"
 import { db } from "../firebaseConfig"

@@ -94,7 +94,7 @@ export default function Navbar() {
           <div className={activeMarker}></div>
         ) : null}
       </Link>
-      <Link href="goals" className={linkCSS}>
+      {/* <Link href="goals" className={linkCSS}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -113,7 +113,7 @@ export default function Navbar() {
         {router.pathname === "/goals" ? (
           <div className={activeMarker}></div>
         ) : null}
-      </Link>
+      </Link> */}
     </nav>
   )
 }
