@@ -27,7 +27,7 @@ const Layout = ({ children }: Props) => {
         ref={containerRef}
       >
         <Header />
-        <div className="grow p-4">{children}</div>
+        <div className="grow px-4">{children}</div>
         <div className="flex-end p-4">
           <Navbar />
         </div>

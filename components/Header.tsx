@@ -4,6 +4,7 @@ import { Context } from "./UserContext"
 
 export default function Header() {
   const { user, toggleUser } = useContext(Context)
+  const date = new Date()
 
   const toggleCSS = user === "pak" ? "justify-start" : "justify-end"
   return (
@@ -28,8 +29,8 @@ export default function Header() {
           />
         </div>
         <div className="mt-1 ml-1 text-xl leading-5 tracking-tighter text-title">
-          <p>2022</p>
-          <p>12</p>
+          <p>{date.getFullYear()}</p>
+          <p>{date.getMonth()}</p>
         </div>
       </div>
     </div>

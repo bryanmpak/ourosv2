@@ -88,7 +88,12 @@ export default function Pomodoro() {
     if (mode === "break" && timer === 0) {
       endCycle()
     } else if (isTimerRunning && timer > 0) {
-      setTimeout(() => setTimer((prevState) => prevState - 1), 1000)
+      const runningTimer = setTimeout(
+        () => setTimer((prevState) => prevState - 1),
+        1000
+      )
+      //clean-up function
+      return () => clearTimeout(runningTimer)
     } else if (isTimerRunning && timer === 0) {
       switchMode()
     }

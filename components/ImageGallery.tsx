@@ -15,7 +15,7 @@ export default function ImageGallery() {
       })
       .then((urlsArray) => {
         const shuffledArr = urlsArray.sort((a, b) => 0.5 - Math.random())
-        const slicedArr = shuffledArr.slice(0, 6)
+        const slicedArr = shuffledArr.slice(0, 5)
         setPhotoUrl(slicedArr)
       })
   }, [])
@@ -28,19 +28,28 @@ export default function ImageGallery() {
   const imgEl = photoUrl.map((photo, i) => (
     <div
       key={i}
-      className=" bg-shadow shadow-glassmorphism shadow-shadow backdrop-blur-l rounded-lg p-[2px] md:p-1"
+      className={`${i === 0 || i === 4 ? "col-span-2" : "col-span-1"} ${
+        i === 0 ? "row-span-2 h-[250px]" : "row-span-1 h-[125px]"
+      } rounded-md border border-white/10 bg-white/5 backdrop-blur-xl`}
     >
-      <div className="flex items-center bg-black h-full w-full rounded-md p-1">
+      <div className="flex items-center bg-black">
         <Image
-          className="h-full w-full object-contain rounded-md"
+          className="rounded-md"
+          style={{ objectFit: "cover" }}
           src={photo}
           alt={`${i}`}
-          width={500}
-          height={500}
+          fill
+          priority
+          sizes="100%"
         />
       </div>
     </div>
   ))
+  console.log(imgEl)
 
-  return <div className="mt-6 grid grid-cols-3 grid-rows-2 gap-1">{imgEl}</div>
+  return (
+    <div className="grid grid-cols-[2fr_1fr_2fr] grid-rows-2 gap-1">
+      {imgEl}
+    </div>
+  )
 }

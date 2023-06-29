@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 const Countdown = () => {
   const currentDate: any = new Date()
-  const targetDate: any = new Date("2023-02-22 00:00")
+  const targetDate: any = new Date("2024-01-30 00:00")
   const timeDiffHrs: number = Math.ceil(
     (targetDate - currentDate) / (1000 * 60 * 60)
   )
@@ -19,7 +19,7 @@ const Countdown = () => {
   }, [])
 
   return (
-    <div className="bg-nav_bg border-2 border-neutral rounded-2xl flex w-2/3 md:w-1/2 h-[60px] justify-evenly items-center m-auto  ">
+    <div className="bg-nav_bg border-2 border-neutral rounded-2xl flex w-1/2 h-[60px] -mt-10 justify-evenly items-center m-auto  ">
       <div className="text-title text-center">
         <p className="text-3xl leading-7">{timeDiff.numOfDays}</p>
         <p className="text-xs font-sans">days</p>
