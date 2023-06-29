@@ -23,12 +23,12 @@ const Layout = ({ children }: Props) => {
   return (
     <div className={`${toggleBg} ${toggleTheme}`}>
       <div
-        className={`max-w-xl flex flex-col m-auto min-h-screen h-[${containerHeight}px]`}
+        className={`max-w-xl flex flex-col m-auto min-h-full`}
         ref={containerRef}
       >
         <Header />
-        <div className="grow px-4">{children}</div>
-        <div className="flex-end p-4">
+        <div className="grow px-6">{children}</div>
+        <div className="flex-end px-2 py-4">
           <Navbar />
         </div>
       </div>

@@ -9,6 +9,11 @@
   body {
     background: .theme-mar;
   }
+  html,
+  body,
+  #__next {
+    height: 100%;
+  }
 }
 
 .theme-pak {

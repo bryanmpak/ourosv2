@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <nav
       className={
-        "flex w-11/12 h-[60px] justify-evenly items-center m-auto rounded-2xl bg-nav_bg border-2 border-neutral"
+        "flex h-[60px] justify-evenly items-center m-auto rounded-2xl bg-nav_bg border-2 border-neutral"
       }
     >
       <Link href="/" className={linkCSS}>

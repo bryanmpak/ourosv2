@@ -12,17 +12,11 @@ export const useDynamicHeight = (offset: 0) => {
 
   useEffect(() => {
     const containerEl = containerRef.current
-    if (containerEl) {
-      const resizeObserver = new ResizeObserver(handleResize)
-      resizeObserver.observe(containerEl)
-    }
+    const resizeObserver = new ResizeObserver(handleResize)
+    resizeObserver.observe(containerEl)
 
     return () => {
-      const containerEl = containerRef.current
-      if (containerEl) {
-        const resizeObserver = new ResizeObserver(handleResize)
-        resizeObserver.unobserve(containerEl)
-      }
+      resizeObserver.unobserve(containerEl)
     }
   }, [offset])
 
