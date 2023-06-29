@@ -25,19 +25,17 @@ export default function ImageGallery() {
       key={i}
       className={`${i === 0 || i === 4 ? "col-span-2" : "col-span-1"} ${
         i === 0 ? "row-span-2 h-[250px]" : "row-span-1 h-[125px]"
-      } rounded-md border border-white/10 bg-white/5 backdrop-blur-xl`}
+      } rounded-md border border-white/10 bg-white/5 backdrop-blur-xl relative`}
     >
-      <div className="flex items-center bg-black">
-        <Image
-          className="rounded-md"
-          style={{ objectFit: "cover" }}
-          src={photo}
-          alt={`${i}`}
-          fill
-          priority
-          // sizes="(min-width: 300px) 50vw, 33vw"
-        />
-      </div>
+      <Image
+        className="rounded-md"
+        style={{ objectFit: "cover" }}
+        src={photo}
+        alt={`${i}`}
+        fill
+        priority
+        sizes="(min-width: 300px) 50vw, 33vw"
+      />
     </div>
   ))
   console.log(imgEl)
