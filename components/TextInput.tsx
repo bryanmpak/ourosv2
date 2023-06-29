@@ -60,8 +60,8 @@ export default function TextInput() {
 
   return (
     // change this div structure to (main div = text div + button div )
-    <div className="flex flex-col font-sans h-full">
-      <div className="overflow-scroll grow p-4 text-text text-sm border-2 border-neutral rounded-xl">
+    <div className="font-sans mt-4">
+      <div className="overflow-scroll p-4 text-text text-sm border-2 h-[50vh] border-neutral rounded-xl">
         <Slate
           editor={editor}
           value={editorValue}
@@ -94,7 +94,7 @@ export default function TextInput() {
 
       <div className="flex justify-between">
         <button
-          className="my-3 h-10 w-1/4 border-neutral border-2 rounded-xl font-sans text-text text-sm hover:bg-neutral"
+          className="mt-4 h-10 w-1/4 border-neutral border-2 rounded-xl font-sans text-text text-sm hover:bg-neutral"
           onClick={() => saveLetter()}
         >
           send ❤️

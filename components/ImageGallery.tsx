@@ -20,11 +20,6 @@ export default function ImageGallery() {
       })
   }, [])
 
-  // ttd:
-  // in map,
-  // index=1 & 8 = grid_column = 2,
-  // grid_row = 2
-
   const imgEl = photoUrl.map((photo, i) => (
     <div
       key={i}
@@ -40,7 +35,7 @@ export default function ImageGallery() {
           alt={`${i}`}
           fill
           priority
-          sizes="100%"
+          sizes="(max-width: 768px) 33vw, 50vw"
         />
       </div>
     </div>
