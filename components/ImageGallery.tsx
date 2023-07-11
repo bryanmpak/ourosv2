@@ -34,7 +34,7 @@ export default function ImageGallery() {
         alt={`${i}`}
         fill
         priority
-        sizes="(min-width: 300px) 50vw, 33vw"
+        sizes="50vw"
       />
     </div>
   ))

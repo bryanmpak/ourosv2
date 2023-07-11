@@ -12,7 +12,7 @@ export default function DailyQuote() {
   const quote = allQuotes[randomQuote].text
 
   return (
-    <div className="mt-6 font-sans text-text text-xs md:text-sm w-4/5 flex-row m-auto h-[60px]">
+    <div className="mt-4 font-sans text-text text-xs md:text-sm w-4/5 flex-row m-auto h-[60px]">
       <em>
         <Typewriter words={[quote]} cursor cursorColor="red" />
       </em>

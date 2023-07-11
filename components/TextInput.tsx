@@ -6,6 +6,8 @@ import { Editable, ReactEditor, Slate, withReact } from "slate-react"
 import { db } from "../firebaseConfig"
 import { Context } from "./UserContext"
 
+// look into refactoring to use alternate to slateJS, it's confusing AF
+
 type CustomElement = { type: "paragraph"; children: CustomText[] }
 type CustomText = {
   text: string
@@ -59,9 +61,8 @@ export default function TextInput() {
   }
 
   return (
-    // change this div structure to (main div = text div + button div )
     <div className="font-sans mt-4">
-      <div className="overflow-scroll p-4 text-text text-sm border-2 h-[50vh] border-neutral rounded-xl">
+      <div className="overflow-scroll p-4 text-text text-base border-2 h-[50vh] border-neutral rounded-xl">
         <Slate
           editor={editor}
           value={editorValue}

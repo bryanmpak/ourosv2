@@ -19,7 +19,7 @@ const Countdown = () => {
   }, [])
 
   return (
-    <div className="bg-nav_bg border-2 border-neutral rounded-2xl flex w-1/2 h-[60px] -mt-10 justify-evenly items-center m-auto  ">
+    <div className="bg-nav_bg border-2 border-neutral rounded-2xl flex w-1/2 h-[60px] -mt-12 justify-evenly items-center m-auto  ">
       <div className="text-title text-center">
         <p className="text-3xl leading-7">{timeDiff.numOfDays}</p>
         <p className="text-xs font-sans">days</p>

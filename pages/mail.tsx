@@ -9,6 +9,8 @@ export default function Mail() {
   const [letters, setLetters] = useState("")
   const { user } = useContext(Context)
 
+  
+  // can prob move this to a helper file
   async function getDocument() {
     const docArr = []
     const q = query(

@@ -2,7 +2,6 @@ import Header from "./Header"
 import Navbar from "./Navbar"
 import { ReactNode, useContext } from "react"
 import { Context } from "./UserContext"
-import { useDynamicHeight } from "../lib/useDynamicHeight"
 
 type Props = {
   children?: ReactNode
@@ -11,7 +10,6 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   const { user } = useContext(Context)
-  const { containerRef, containerHeight } = useDynamicHeight(0)
 
   const toggleBg =
     user === "pak"
@@ -21,11 +19,8 @@ const Layout = ({ children }: Props) => {
   const toggleTheme = user === "pak" ? "theme-pak" : "theme-mar"
 
   return (
-    <div className={`${toggleBg} ${toggleTheme}`}>
-      <div
-        className={`max-w-xl flex flex-col m-auto min-h-full`}
-        ref={containerRef}
-      >
+    <div className={`${toggleBg} ${toggleTheme} h-full`}>
+      <div className="max-w-xl flex flex-col m-auto  min-h-full">
         <Header />
         <div className="grow px-6">{children}</div>
         <div className="flex-end px-2 py-4">
