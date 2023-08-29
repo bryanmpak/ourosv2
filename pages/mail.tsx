@@ -1,15 +1,14 @@
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Text } from "slate"
 import { Context } from "../components/UserContext"
-import { db } from "../firebaseConfig"
+import { db } from "../utils/firebaseConfig"
 import parse from "html-react-parser"
 
 export default function Mail() {
   const [letters, setLetters] = useState("")
   const { user } = useContext(Context)
 
-  
   // can prob move this to a helper file
   async function getDocument() {
     const docArr = []
@@ -51,7 +50,12 @@ export default function Mail() {
     setLetters(serialize(docData))
   }
 
-  getDocument()
+  useEffect(() => {
+    if (user) {
+      // Check if user is not null or undefined
+      getDocument()
+    }
+  }, [user])
 
   return (
     <div className="text-title font-sans p-4 overflow-scroll text-sm">

@@ -10,15 +10,15 @@ import {
   buildStyles,
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar"
-import { db } from "../firebaseConfig"
+import { db } from "../utils/firebaseConfig"
 import { Context } from "./UserContext"
 
-export default function Pomodoro() {
-  interface Session {
-    workTime: number
-    breakTime: number
-  }
+interface Session {
+  workTime: number
+  breakTime: number
+}
 
+export default function Pomodoro() {
   const SHORT_SESSION: Session = {
     workTime: 25 * 60,
     breakTime: 5 * 60,
@@ -122,10 +122,10 @@ export default function Pomodoro() {
       <motion.div
         className="cursor-pointer w-[70%] xs:w-[100%] m-auto"
         onClick={() => handleClick()}
-        whileHover={{
-          scale: 1.025,
-          transition: { duration: 0.5 },
-        }}
+        // whileHover={{
+        //   scale: 1.025,
+        //   transition: { duration: 0.5 },
+        // }}
         whileTap={{ scale: 0.975 }}
       >
         <CircularProgressbarWithChildren

@@ -3,7 +3,7 @@ import isHotkey from "is-hotkey"
 import { useCallback, useContext, useState } from "react"
 import { BaseEditor, createEditor, Descendant, Editor } from "slate"
 import { Editable, ReactEditor, Slate, withReact } from "slate-react"
-import { db } from "../firebaseConfig"
+import { db } from "../utils/firebaseConfig"
 import { Context } from "./UserContext"
 
 // look into refactoring to use alternate to slateJS, it's confusing AF

@@ -1,5 +1,5 @@
 import { ref, getDownloadURL, listAll } from "firebase/storage"
-import { storage } from "../firebaseConfig"
+import { storage } from "../utils/firebaseConfig"
 import { useEffect, useState } from "react"
 import Image from "next/image"
 
