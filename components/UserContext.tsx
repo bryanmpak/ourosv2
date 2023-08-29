@@ -7,11 +7,14 @@ type Props = {
 }
 
 function UserContext({ children }: Props) {
-  const [user, setUser] = useState("pak")
+  const [user, setUser] = useState(null)
+
+  // set this up so that there's a clear distinction in lanes between signed-in user and Guest
 
   useEffect(() => {
-    // not sure if this does the trick, since an "else" statement with a
-    // state setter function will re-render..? causing infinite loop
+    if (user === "Guest-1" || user === "Guest-2") {
+      return
+    }
     if (window.localStorage.getItem("user") !== null) {
       let currentUser = window.localStorage.getItem("user")
       setUser(currentUser)
@@ -19,6 +22,11 @@ function UserContext({ children }: Props) {
   }, [])
 
   function toggleUser() {
+    if (user === "Guest-1" || user === "Guest-2") {
+      const newGuest = user === "Guest-1" ? "Guest-2" : "Guest-1"
+      setUser(newGuest)
+      return
+    }
     const newUser = user === "pak" ? "mar" : "pak"
     window.localStorage.setItem("user", newUser)
     setUser(newUser)

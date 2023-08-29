@@ -6,7 +6,8 @@ export default function Header() {
   const { user, toggleUser } = useContext(Context)
   const date = new Date()
 
-  const toggleCSS = user === "pak" ? "justify-start" : "justify-end"
+  const toggleCSS =
+    user === "pak" || user === "Guest-1" ? "justify-start" : "justify-end"
   return (
     <div className="flex gap-6 md:gap-12 p-2">
       <div className="text-5xl tracking-tighter text-title">
