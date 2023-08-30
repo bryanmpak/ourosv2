@@ -10,35 +10,30 @@ export const signIn = async (
   enteredPassword: string,
   isDemo: boolean
 ): Promise<void> => {
-  if (enteredPassword === SHARED_PASSWORD) {
-    try {
-      const userDoc = await getDoc(doc(db, "users", username))
-      if (userDoc.exists()) {
-        const email = userDoc.data().email
+  if (enteredPassword !== SHARED_PASSWORD) {
+    throw new Error("Incorrect password")
+  }
 
-        if (email) {
-          const userCredentials = await signInWithEmailAndPassword(
-            auth,
-            email,
-            enteredPassword
-          )
-          const user = userCredentials.user
-          console.log("User signed in: ", user)
-        } else {
-          console.log("Email not found")
-        }
+  try {
+    const userDoc = await getDoc(doc(db, "users", username))
+    if (userDoc.exists()) {
+      const email = userDoc.data().email
+
+      if (email) {
+        const userCredentials = await signInWithEmailAndPassword(
+          auth,
+          email,
+          enteredPassword
+        )
+        const user = userCredentials.user
+        console.log("User signed in: ", user)
       } else {
-        console.log("Username not found")
+        console.log("Email not found")
       }
-    } catch (error) {
-      console.log("Error during sign-in:", error)
+    } else {
+      console.log("Username not found")
     }
-  } else {
-    console.log("Incorrect password")
-    toast({
-      title: "Incorrect password.",
-      description: "",
-      variant: "destructive",
-    })
+  } catch (error) {
+    console.log("Error during sign-in:", error)
   }
 }

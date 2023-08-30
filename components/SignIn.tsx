@@ -13,6 +13,7 @@ const SignIn = () => {
   const { user, setUser } = useContext(Context)
 
   const router = useRouter()
+  const toastVariant = user !== "mar" || user !== "pak" ? "guest" : "default"
 
   useEffect(() => {
     const fetchUsernames = async () => {
@@ -27,9 +28,14 @@ const SignIn = () => {
   }, [])
 
   const handleSignIn = async () => {
+    setPassword("")
     try {
       await signIn(username, password, false)
-      console.log("Successfully signed in")
+      toast({
+        title: "Successfully signed in 🥳",
+        description: "Enjoy using the app ❤️",
+        variant: toastVariant,
+      })
       setUser(username)
       router.push("/")
     } catch (error) {
