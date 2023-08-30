@@ -3,6 +3,8 @@ import { collection, getDocs } from "firebase/firestore"
 import { signIn } from "../utils/signin"
 import { db } from "../utils/firebaseConfig"
 import { Context } from "./UserContext"
+import { toast } from "../utils/useToast"
+import { useRouter } from "next/router"
 
 const SignIn = () => {
   const [username, setUsername] = useState("")
@@ -10,7 +12,7 @@ const SignIn = () => {
   const [usernames, setUsernames] = useState<string[]>([])
   const { user, setUser } = useContext(Context)
 
-  console.log(user)
+  const router = useRouter()
 
   useEffect(() => {
     const fetchUsernames = async () => {
@@ -29,8 +31,14 @@ const SignIn = () => {
       await signIn(username, password, false)
       console.log("Successfully signed in")
       setUser(username)
+      router.push("/")
     } catch (error) {
       // probably add a toast notification here
+      toast({
+        title: "Error signing in.",
+        description: "Please try again.",
+        variant: "destructive",
+      })
       console.error("Error signing in: ", error)
     }
   }
@@ -40,10 +48,14 @@ const SignIn = () => {
   }
 
   return (
-    <div className="flex flex-col">
-      <label>
-        Username:
-        <select value={username} onChange={(e) => setUsername(e.target.value)}>
+    <div className="flex flex-col h-1/2 min-h-[300px] font-sans bg-nav_bg border-2 border-neutral rounded-2xl p-8 m-auto items-center justify-center">
+      <label htmlFor="username">
+        <select
+          className="rounded-sm h-[25px] w-[200px] mb-2 px-1"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        >
           <option value="" disabled>
             Select Username
           </option>
@@ -54,17 +66,28 @@ const SignIn = () => {
           ))}
         </select>
       </label>
-      <label>
-        Password:
+      <label htmlFor="password">
         <input
+          className="rounded-sm h-[25px] w-[200px] mb-2 px-1"
+          id="password"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <button onClick={handleSignIn}>Sign In</button>
-      <button onClick={handleGuestLogIn}>Continue as Guest</button>
+      <button
+        className="bg-accent border-2 border-neutral rounded-md p-1 w-1/2 hover:bg-hover"
+        onClick={handleSignIn}
+      >
+        Sign In
+      </button>
+      <button
+        className="text-text text-sm italic hover:underline hover:decoration-shadow"
+        onClick={handleGuestLogIn}
+      >
+        Continue as Guest
+      </button>
     </div>
   )
 }

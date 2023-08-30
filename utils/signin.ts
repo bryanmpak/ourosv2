@@ -1,6 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { doc, getDoc } from "firebase/firestore"
 import { auth, db } from "./firebaseConfig"
+import { toast } from "./useToast"
 
 const SHARED_PASSWORD = process.env.NEXT_PUBLIC_SHARED_SECRET
 
@@ -9,34 +10,35 @@ export const signIn = async (
   enteredPassword: string,
   isDemo: boolean
 ): Promise<void> => {
-  if (isDemo) {
-    // *** do something (figure this out later)
-  } else {
-    if (enteredPassword === SHARED_PASSWORD) {
-      try {
-        const userDoc = await getDoc(doc(db, "users", username))
-        if (userDoc.exists()) {
-          const email = userDoc.data().email
+  if (enteredPassword === SHARED_PASSWORD) {
+    try {
+      const userDoc = await getDoc(doc(db, "users", username))
+      if (userDoc.exists()) {
+        const email = userDoc.data().email
 
-          if (email) {
-            const userCredentials = await signInWithEmailAndPassword(
-              auth,
-              email,
-              enteredPassword
-            )
-            const user = userCredentials.user
-            console.log("User signed in: ", user)
-          } else {
-            console.log("Email not found")
-          }
+        if (email) {
+          const userCredentials = await signInWithEmailAndPassword(
+            auth,
+            email,
+            enteredPassword
+          )
+          const user = userCredentials.user
+          console.log("User signed in: ", user)
         } else {
-          console.log("Username not found")
+          console.log("Email not found")
         }
-      } catch (error) {
-        console.log("Error during sign-in:", error)
+      } else {
+        console.log("Username not found")
       }
-    } else {
-      console.log("Incorrect password")
+    } catch (error) {
+      console.log("Error during sign-in:", error)
     }
+  } else {
+    console.log("Incorrect password")
+    toast({
+      title: "Incorrect password.",
+      description: "",
+      variant: "destructive",
+    })
   }
 }

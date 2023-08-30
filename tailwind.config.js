@@ -19,6 +19,9 @@ module.exports = {
         neutral: "var(--color-neutral)",
         dark: "var(--color-dark)",
         shadow: "var(--color-shadow)",
+        hover: "var(--color-hover)",
+        accent: "var(--color-accent)",
+        destructive: "var(--color-destructive)",
       },
       boxShadow: {
         glassmorphism: "0 2px 32px 0 rgba( 75, 85, 99, 0.37 )",

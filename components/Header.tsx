@@ -7,7 +7,7 @@ export default function Header() {
   const date = new Date()
 
   const toggleCSS =
-    user === "pak" || user === "Guest-1" ? "justify-start" : "justify-end"
+    user === "mar" || user === "Guest-2" ? "justify-end" : "justify-start"
   return (
     <div className="flex gap-6 md:gap-12 p-2">
       <div className="text-5xl tracking-tighter text-title">
@@ -16,9 +16,11 @@ export default function Header() {
       </div>
       <div className="w-full h-4 border-t mt-7"></div>
       <div className="mt-3">
-        <div
+        <button
+          disabled={!user}
+          style={{ cursor: !user ? "not-allowed" : "pointer" }}
           className={
-            "flex cursor-pointer rounded-full p-[2px] bg-dark border-neutral border-2 w-[60px] h-[30px] items-center " +
+            "flex rounded-full p-[2px] bg-dark border-neutral border-2 w-[60px] h-[30px] items-center " +
             toggleCSS
           }
           onClick={() => toggleUser()}
@@ -28,7 +30,7 @@ export default function Header() {
             layout
             transition={spring}
           />
-        </div>
+        </button>
         <div className="mt-1 ml-1 text-xl leading-5 tracking-tighter text-title">
           <p>{date.getFullYear()}</p>
           <p>{date.getMonth()}</p>

@@ -24,6 +24,9 @@
   --color-neutral: theme("colors.zinc.800");
   --color-dark: #1a1a1a;
   --color-shadow: #f7ba2b;
+  --color-hover: theme("colors.zinc.400");
+  --color-accent: theme("colors.zinc.300");
+  --color-destructive: #ff5555;
 }
 
 .theme-mar {
@@ -34,4 +37,7 @@
   --color-neutral: theme("colors.rose.300");
   --color-dark: theme("colors.rose.200");
   --color-shadow: #aae3ea;
+  --color-hover: theme("colors.rose.500");
+  --color-accent: theme("colors.rose.400");
+  --color-destructive: #ff5555;
 }
