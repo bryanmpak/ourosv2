@@ -5,6 +5,8 @@ import { BaseEditor, createEditor, Descendant, Editor } from "slate"
 import { Editable, ReactEditor, Slate, withReact } from "slate-react"
 import { db } from "../utils/firebaseConfig"
 import { Context } from "./UserContext"
+import { toast } from "../utils/useToast"
+import { useRouter } from "next/router"
 
 // look into refactoring to use alternate to slateJS like editorJS, it's confusing AF
 
@@ -47,17 +49,27 @@ export default function TextInput() {
   const [editorValue, setEditorValue] = useState(initialValue)
   const { user } = useContext(Context)
 
+  const toastVariant = user !== "mar" || user !== "pak" ? "guest" : "default"
+  const router = useRouter()
+
   const renderLeaf = useCallback((props) => {
     return <Leaf {...props} />
   }, [])
 
-  function saveLetter() {
-    const docRef = addDoc(collection(db, `${user}/data/letters`), {
+  async function saveLetter() {
+    setTimeout(() => {
+      router.push("/write")
+    }, 1000)
+    await addDoc(collection(db, `${user}/data/letters`), {
       timestamp: serverTimestamp(),
       author: user,
       children: text,
     })
     setEditorValue(initialValue)
+    toast({
+      title: "Message sent!",
+      variant: toastVariant,
+    })
   }
 
   return (

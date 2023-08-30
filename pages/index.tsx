@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <>
-      <Countdown />
+      {(user === "pak" || user === "mar") && <Countdown />}
       <DailyQuote />
       <ImageGallery />
     </>

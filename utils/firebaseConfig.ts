@@ -24,6 +24,4 @@ const auth = getAuth(app)
 const storage = getStorage(app)
 const db = getFirestore(app)
 
-console.log("Firebase Initialized")
-
 export { app, auth, storage, db }
