@@ -12,8 +12,25 @@ export default function Mail() {
   // can prob move this to a helper file
   async function getDocument() {
     const docArr = []
+
+    let newUser
+    switch (user) {
+      case "pak":
+        newUser = "mar"
+        break
+      case "mar":
+        newUser = "pak"
+        break
+      case "Guest-1":
+        newUser = "Guest-2"
+        break
+      case "Guest-2":
+        newUser = "Guest-1"
+        break
+    }
+
     const q = query(
-      collection(db, `${user === "pak" ? "mar" : "pak"}/data/letters`),
+      collection(db, `${newUser}/data/letters`),
       orderBy("timestamp", "desc"),
       limit(1)
     )

@@ -6,7 +6,7 @@ import { Editable, ReactEditor, Slate, withReact } from "slate-react"
 import { db } from "../utils/firebaseConfig"
 import { Context } from "./UserContext"
 
-// look into refactoring to use alternate to slateJS, it's confusing AF
+// look into refactoring to use alternate to slateJS like editorJS, it's confusing AF
 
 type CustomElement = { type: "paragraph"; children: CustomText[] }
 type CustomText = {

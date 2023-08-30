@@ -9,9 +9,10 @@ type Props = {
 function UserContext({ children }: Props) {
   const [user, setUser] = useState(null)
 
-  // set this up so that there's a clear distinction in lanes between signed-in user and Guest
-
+  
   useEffect(() => {
+    // set this up so others can take a look but not access the data
+    // kinda messy but gets the job done, maybe come back and refactor to create two mappings (users & guest)
     if (user === "Guest-1" || user === "Guest-2") {
       return
     }

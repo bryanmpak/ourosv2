@@ -44,7 +44,11 @@ export default function Pomodoro() {
   function switchMode() {
     setMode((prevMode) => (prevMode === "work" ? "break" : "work"))
     mode === "work" ? setTimer(breakTime) : setTimer(workTime)
-    const docRef = addDoc(collection(db, `${user}/data/timer`), {
+
+    if (user === "Guest-1" || user === "Guest-2") {
+      return
+    }
+    addDoc(collection(db, `${user}/data/timer`), {
       timestamp: serverTimestamp(),
       author: user,
       children: workTime,
@@ -53,6 +57,9 @@ export default function Pomodoro() {
 
   async function getDailyStreak() {
     // query firebase firestore
+    if (user === "Guest-1" || user === "Guest-2") {
+      return
+    }
     const today = new Date().setHours(0, 0, 0, 0) / 1000
     const querySnapshot = await getDocs(collection(db, `${user}/data/timer`))
     const docArr = []
