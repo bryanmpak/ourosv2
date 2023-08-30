@@ -28,14 +28,17 @@ export default function Pomodoro() {
     breakTime: 10 * 60,
   }
 
+  const { user } = useContext(Context)
+  const initialStreak = getDailyStreak()
+
   const [workTime, setWorkTime] = useState(SHORT_SESSION.workTime)
   const [breakTime, setBreakTime] = useState(SHORT_SESSION.breakTime)
   const [timer, setTimer] = useState(SHORT_SESSION.workTime)
   const [isTimerRunning, setIsTimerRunning] = useState(false)
   const [mode, setMode] = useState("work")
   const [isTimeLengthShort, setIsTimeLengthShort] = useState(true)
-  const [dailyStreak, setDailyStreak] = useState(0)
-  const { user } = useContext(Context)
+  const [dailyStreak, setDailyStreak] = useState(initialStreak)
+  const [isLoading, setIsLoading] = useState(true)
 
   function handleClick() {
     setIsTimerRunning((prevState) => !prevState)
@@ -70,6 +73,7 @@ export default function Pomodoro() {
     })
     const sum = docArr.reduce((acc, o) => acc + parseInt(o.children), 0)
     setDailyStreak(sum)
+    setIsLoading(false)
   }
 
   function endCycle() {
@@ -124,7 +128,9 @@ export default function Pomodoro() {
   return (
     <>
       <div className="text-center text-xl text-title mb-2">
-        DAILY STREAK: {convertHMS(dailyStreak)}
+        {isLoading
+          ? "DAILY STREAK: 0:00"
+          : `DAILY STREAK: ${convertHMS(dailyStreak)}`}
       </div>
       <motion.div
         className="cursor-pointer w-[70%] xs:w-[100%] m-auto"
