@@ -1,10 +1,14 @@
 import { motion } from "framer-motion"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Context } from "./UserContext"
 
 export default function Header() {
   const { user, toggleUser } = useContext(Context)
-  const date = new Date()
+  const [date, setDate] = useState(null)
+
+  useEffect(() => {
+    setDate(new Date())
+  }, [])
 
   const toggleCSS =
     user === "mar" || user === "Guest-2" ? "justify-end" : "justify-start"

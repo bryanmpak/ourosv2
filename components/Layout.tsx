@@ -19,7 +19,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       <div className="max-w-xl flex flex-col m-auto  min-h-full">
         <Header />
         <main className="grow px-6">{children}</main>
-        <div className="flex-end px-2 py-4">
+        <div className="mt-auto px-2 py-4">
           <Navbar />
         </div>
       </div>
