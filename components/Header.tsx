@@ -36,8 +36,12 @@ export default function Header() {
           />
         </button>
         <div className="mt-1 ml-1 text-xl leading-5 tracking-tighter text-title">
-          <p>{date.getFullYear()}</p>
-          <p>{date.getMonth()}</p>
+          {date && (
+            <>
+              <p>{date.getFullYear()}</p>
+              <p>{date.getMonth()}</p>
+            </>
+          )}
         </div>
       </div>
     </div>
