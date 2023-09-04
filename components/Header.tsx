@@ -13,7 +13,7 @@ export default function Header() {
   const toggleCSS =
     user === "mar" || user === "Guest-2" ? "justify-end" : "justify-start"
   return (
-    <div className="flex gap-6 md:gap-12 p-2">
+    <div className="flex gap-6 md:gap-12 px-2 xs:py-2">
       <div className="text-5xl tracking-tighter text-title">
         <p>our</p>
         <p className="leading-10">OS</p>
