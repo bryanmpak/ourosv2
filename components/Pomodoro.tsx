@@ -133,7 +133,7 @@ export default function Pomodoro() {
           : `DAILY STREAK: ${convertHMS(dailyStreak)}`}
       </div>
       <motion.div
-        className="cursor-pointer w-[70%] xs:w-[100%] m-auto"
+        className="cursor-pointer w-[100%] xs:w-[70%] m-auto"
         onClick={() => handleClick()}
         // whileHover={{
         //   scale: 1.025,

@@ -50,7 +50,9 @@ export default function ImageGallery() {
     <div
       key={i}
       className={`${i === 0 || i === 4 ? "col-span-2" : "col-span-1"} ${
-        i === 0 ? "row-span-2 h-[calc(250px - 1rem)]" : "row-span-1 h-[125px]"
+        i === 0
+          ? "row-span-2 h-[calc(250px - 1rem)]"
+          : "row-span-1 h-[100px] xs:h-[125px]"
       } rounded-md border border-white/10 bg-white/5 backdrop-blur-xl flex justify-center items-center`}
     >
       <p className="text-text font-sans text-xl">{el}</p>

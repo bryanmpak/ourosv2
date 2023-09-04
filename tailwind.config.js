@@ -6,11 +6,10 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    screens: {
-      xs: { max: "500px" },
-      ...defaultTheme.screens,
-    },
     extend: {
+      screens: {
+        xs: "400px",
+      },
       colors: {
         title: "var(--color-title)",
         text: "var(--color-text)",

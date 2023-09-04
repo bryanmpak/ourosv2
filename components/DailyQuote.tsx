@@ -23,7 +23,7 @@ export default function DailyQuote() {
   const quote = data.content
 
   return (
-    <div className="my-4 font-sans text-text text-xs md:text-sm w-4/5 flex-row m-auto h-[60px]">
+    <div className="my-2 xs:my-4 font-sans text-text text-xs md:text-sm w-4/5 flex-row m-auto h-[50px]">
       <em>
         <Typewriter words={[quote]} cursor cursorColor="red" />
       </em>
