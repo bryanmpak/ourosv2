@@ -29,7 +29,6 @@ export default function Pomodoro() {
   }
 
   const { user } = useContext(Context)
-  const initialStreak = getDailyStreak()
 
   const [workTime, setWorkTime] = useState(SHORT_SESSION.workTime)
   const [breakTime, setBreakTime] = useState(SHORT_SESSION.breakTime)
@@ -37,8 +36,16 @@ export default function Pomodoro() {
   const [isTimerRunning, setIsTimerRunning] = useState(false)
   const [mode, setMode] = useState("work")
   const [isTimeLengthShort, setIsTimeLengthShort] = useState(true)
-  const [dailyStreak, setDailyStreak] = useState(initialStreak)
+  const [dailyStreak, setDailyStreak] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    getDailyStreak().then((streak) => {
+      setDailyStreak(streak)
+      setIsLoading(false)
+      console.log(streak)
+    })
+  }, [])
 
   function handleClick() {
     setIsTimerRunning((prevState) => !prevState)
@@ -59,9 +66,8 @@ export default function Pomodoro() {
   }
 
   async function getDailyStreak() {
-    // query firebase firestore
     if (user === "Guest-1" || user === "Guest-2") {
-      return
+      return 0
     }
     const today = new Date().setHours(0, 0, 0, 0) / 1000
     const querySnapshot = await getDocs(collection(db, `${user}/data/timer`))
@@ -72,15 +78,16 @@ export default function Pomodoro() {
       }
     })
     const sum = docArr.reduce((acc, o) => acc + parseInt(o.children), 0)
-    setDailyStreak(sum)
-    setIsLoading(false)
+    return sum
   }
 
   function endCycle() {
     setIsTimerRunning(false)
     setMode("work")
     setTimer(workTime)
-    getDailyStreak()
+    getDailyStreak().then((streak) => {
+      setDailyStreak(streak)
+    })
   }
 
   function toggleLength() {
@@ -127,13 +134,13 @@ export default function Pomodoro() {
 
   return (
     <>
-      <div className="text-center text-xl text-title mb-2">
+      <div className='text-center text-xl text-title mb-2'>
         {isLoading
           ? "DAILY STREAK: 0:00"
           : `DAILY STREAK: ${convertHMS(dailyStreak)}`}
       </div>
       <motion.div
-        className="cursor-pointer w-[100%] xs:w-[70%] m-auto"
+        className='cursor-pointer w-[100%] xs:w-[70%] m-auto'
         onClick={() => handleClick()}
         // whileHover={{
         //   scale: 1.025,
@@ -142,7 +149,7 @@ export default function Pomodoro() {
         whileTap={{ scale: 0.975 }}
       >
         <CircularProgressbarWithChildren
-          className="p-4"
+          className='p-4'
           value={valPerc}
           background
           backgroundPadding={8}
@@ -153,19 +160,19 @@ export default function Pomodoro() {
             strokeLinecap: "rounded",
           })}
         >
-          <div className="text-7xl mt-2 text-title">{convertHMS(timer)}</div>
-          <p className="mt-6 font-sans tracking-[8px] text-title text-xs">
+          <div className='text-7xl mt-2 text-title'>{convertHMS(timer)}</div>
+          <p className='mt-6 font-sans tracking-[8px] text-title text-xs'>
             {isTimerRunning ? "PAUSE" : "START"}
           </p>
         </CircularProgressbarWithChildren>
       </motion.div>
-      <div className="w-1/3 h-[30px] m-auto mt-2 flex">
+      <div className='w-1/3 h-[30px] m-auto mt-2 flex'>
         <button
           onClick={() => toggleLength()}
           className={"w-full flex bg-neutral rounded-full " + toggleCSS}
         >
           <motion.div
-            className="w-[30px] h-[30px] p-[10px] cursor-pointer rounded-full bg-[#f86f72]"
+            className='w-[30px] h-[30px] p-[10px] cursor-pointer rounded-full bg-[#f86f72]'
             layout
             transition={spring}
           ></motion.div>

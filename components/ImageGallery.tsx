@@ -3,6 +3,7 @@ import { storage } from "../utils/firebaseConfig"
 import { useContext, useEffect, useState } from "react"
 import Image from "next/image"
 import { Context } from "./UserContext"
+import { getRandomSubset } from "../utils/getRandomSubset"
 
 export default function ImageGallery() {
   const { user } = useContext(Context)
@@ -19,11 +20,9 @@ export default function ImageGallery() {
           return Promise.all(promises)
         })
         .then((urlsArray) => {
-          const shuffledArr = urlsArray.sort((a, b) => 0.5 - Math.random())
-          const slicedArr = shuffledArr.slice(0, 5)
-          setPhotoUrl(slicedArr)
+          const randomFive = getRandomSubset(urlsArray, 5)
+          setPhotoUrl(randomFive)
         })
-    } else {
     }
   }, [])
 
@@ -35,13 +34,13 @@ export default function ImageGallery() {
       } rounded-md border border-white/10 bg-white/5 backdrop-blur-xl relative`}
     >
       <Image
-        className="rounded-md"
+        className='rounded-md'
         style={{ objectFit: "cover" }}
         src={photo}
         alt={`${i}`}
         fill
         priority
-        sizes="50vw"
+        sizes='50vw'
       />
     </div>
   ))
@@ -55,14 +54,14 @@ export default function ImageGallery() {
           : "row-span-1 h-[100px] xs:h-[125px]"
       } rounded-md border border-white/10 bg-white/5 backdrop-blur-xl flex justify-center items-center`}
     >
-      <p className="text-text font-sans text-xl">{el}</p>
+      <p className='text-text font-sans text-xl'>{el}</p>
     </div>
   ))
 
   const displayEl = user === "pak" || user === "mar" ? imgEl : guestEl
 
   return (
-    <div className="grid grid-cols-[2fr_1fr_2fr] grid-rows-2 gap-1">
+    <div className='grid grid-cols-[2fr_1fr_2fr] grid-rows-2 gap-1'>
       {displayEl}
     </div>
   )
