@@ -16,7 +16,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className={`${toggleBg} ${toggleTheme} min-h-full`}>
-      {/* *** need to figure out how tf to get screen height to work */}
       <div className={`max-w-xl flex flex-col h-[90vh] xs:h-screen mx-auto`}>
         <Header />
         <main className="flex-grow px-6">{children}</main>

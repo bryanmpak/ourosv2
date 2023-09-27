@@ -13,13 +13,13 @@ export default function Header() {
   const toggleCSS =
     user === "mar" || user === "Guest-2" ? "justify-end" : "justify-start"
   return (
-    <div className="flex gap-6 md:gap-12 px-2 xs:py-2">
-      <div className="text-5xl tracking-tighter text-title">
+    <div className='flex gap-6 md:gap-12 px-2 xs:py-2'>
+      <div className='text-5xl tracking-tighter text-title'>
         <p>our</p>
-        <p className="leading-10">OS</p>
+        <p className='leading-10'>OS</p>
       </div>
-      <div className="w-full h-4 border-t mt-7"></div>
-      <div className="mt-3">
+      <div className='w-full h-4 border-t mt-7'></div>
+      <div className='mt-3'>
         <button
           disabled={!user}
           style={{ cursor: !user ? "not-allowed" : "pointer" }}
@@ -30,12 +30,12 @@ export default function Header() {
           onClick={() => toggleUser()}
         >
           <motion.div
-            className="bg-neutral border-light border-2 w-[24px] h-[24px] rounded-full"
+            className='bg-neutral border-light border-2 w-[24px] h-[24px] rounded-full'
             layout
             transition={spring}
           />
         </button>
-        <div className="mt-1 ml-1 text-xl leading-5 tracking-tighter text-title">
+        <div className='mt-1 ml-1 text-xl leading-5 tracking-tighter text-title'>
           {date && (
             <>
               <p>{date.getFullYear()}</p>
