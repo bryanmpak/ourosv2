@@ -12,9 +12,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <Head>
           <title>ourOS ❤️</title>{" "}
           <meta
-            name="description"
-            content="A digital collection specially for us."
+            name='description'
+            content='A digital collection specially for us.'
           />
+          <link rel='shortcut icon' href='/favicon.ico' />
         </Head>
         <Component {...pageProps} />
       </Layout>
