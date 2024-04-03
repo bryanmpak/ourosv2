@@ -1,15 +1,18 @@
 import Placeholder from "@tiptap/extension-placeholder"
 import { EditorContent, JSONContent, useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import { useRef, useState } from "react"
+import { Dispatch, SetStateAction, useRef, useState } from "react"
 
-const Tiptap = () => {
-  const [editorContent, setEditorContent] = useState<JSONContent>({
-    type: "doc",
-    content: [],
-  })
+type TiptapEditorProps = {
+  editorContent: JSONContent
+  setEditorContent: Dispatch<SetStateAction<JSONContent>>
+}
+
+const TiptapEditor = ({
+  editorContent,
+  setEditorContent,
+}: TiptapEditorProps) => {
   const menuContainerRef = useRef(null)
-  console.log(editorContent)
 
   const editor = useEditor({
     onCreate: ({ editor }) => {
@@ -51,4 +54,4 @@ const Tiptap = () => {
   )
 }
 
-export default Tiptap
+export default TiptapEditor

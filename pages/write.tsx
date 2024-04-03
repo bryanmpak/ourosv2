@@ -1,11 +1,45 @@
-import Tiptap from "../components/TextArea"
+import TiptapEditor from "../components/TiptapEditor"
 import TextInput from "../components/TextInput"
+import { FormEvent, useState } from "react"
+import { JSONContent } from "@tiptap/react"
 
 export default function Write() {
+  const [editorContent, setEditorContent] = useState<JSONContent>({
+    type: "doc",
+    content: [],
+  })
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const promise = await fetch("/api/letters", {
+      method: "POST",
+      body: JSON.parse(JSON.stringify(editorContent)),
+    })
+
+    // add a sonner toast notification based on response
+    // promise.toast({})
+
+    // clear out editorContent state in success
+    setEditorContent({
+      type: "doc",
+      content: [],
+    })
+  }
+
   return (
-    <>
-      <TextInput />
-      {/* <Tiptap /> */}
-    </>
+    <form onSubmit={handleSubmit}>
+      {/* <TextInput /> */}
+      <TiptapEditor
+        editorContent={editorContent}
+        setEditorContent={setEditorContent}
+      />
+      <button
+        className='mt-4 h-10 w-1/4 border-neutral border-2 rounded-xl font-sans text-text text-sm hover:bg-neutral disabled:pointer-events-none ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-text focus-visible:ring-offset-1'
+        type='submit'
+      >
+        send ❤️
+      </button>
+    </form>
   )
 }
