@@ -4,6 +4,7 @@ import Layout from "../components/Layout"
 import { UserContext } from "../components/UserContext"
 import Head from "next/head"
 import { Toaster } from "sonner"
+import { ClerkProvider } from "@clerk/nextjs"
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -17,7 +18,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           />
           <link rel='shortcut icon' href='/favicon.ico' />
         </Head>
-        <Component {...pageProps} />
+        <ClerkProvider>
+          <Component {...pageProps} />
+        </ClerkProvider>
         <Toaster
           toastOptions={{
             unstyled: true,

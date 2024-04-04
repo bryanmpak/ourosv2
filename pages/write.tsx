@@ -19,7 +19,7 @@ export default function Write() {
     })
 
     // add a sonner toast notification based on response, check if this works
-    // need to style the toasts
+    // TODO: need to style the toasts
     if (response.ok) {
       const data = await response.json()
       if (data.firstResult) {
