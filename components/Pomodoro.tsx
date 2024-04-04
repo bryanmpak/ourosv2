@@ -43,7 +43,7 @@ export default function Pomodoro() {
     getDailyStreak().then((streak) => {
       setDailyStreak(streak)
       setIsLoading(false)
-      console.log(streak)
+      // console.log(streak)
     })
   }, [])
 

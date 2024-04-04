@@ -41,3 +41,15 @@
   --color-accent: theme("colors.rose.400");
   --color-destructive: #ff5555;
 }
+
+.tiptap.ProseMirror {
+  outline: none;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: var(--color-text);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
