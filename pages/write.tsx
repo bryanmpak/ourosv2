@@ -2,6 +2,7 @@ import TiptapEditor from "../components/TiptapEditor"
 import TextInput from "../components/TextInput"
 import { FormEvent, useState } from "react"
 import { JSONContent } from "@tiptap/react"
+import { toast } from "sonner"
 
 export default function Write() {
   const [editorContent, setEditorContent] = useState<JSONContent>({
@@ -12,13 +13,24 @@ export default function Write() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const promise = await fetch("/api/letters", {
+    const response = await fetch("/api/letters", {
       method: "POST",
       body: JSON.parse(JSON.stringify(editorContent)),
     })
 
-    // add a sonner toast notification based on response
-    // promise.toast({})
+    // add a sonner toast notification based on response, check if this works
+    // need to style the toasts
+    if (response.ok) {
+      const data = await response.json()
+      if (data.firstResult) {
+        toast.success(`Latest letter retrieved: ${data.firstResult.content}`)
+      } else {
+        toast.info("No letters found for the user.")
+      }
+    } else {
+      const errorData = await response.json()
+      toast.error(errorData.error || "Failed to retrieve letters.")
+    }
 
     // clear out editorContent state in success
     setEditorContent({

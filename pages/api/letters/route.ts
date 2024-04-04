@@ -22,9 +22,14 @@ export default async function handler(
     }
   } else {
     try {
+      const partnerId = await prisma.user.findUnique({
+        where: { userId },
+        select: { partnerId: true },
+      })
+
       const firstResult = await prisma.letter.findFirst({
         where: {
-          partnerId: userId,
+          userId: partnerId.partnerId,
         },
         orderBy: {
           createdAt: "desc",

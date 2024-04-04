@@ -11,7 +11,6 @@
   "dependencies": {
     "@next/font": "13.0.7",
     "@prisma/client": "^5.12.0",
-    "@radix-ui/react-toast": "^1.1.4",
     "@tiptap/extension-placeholder": "^2.2.4",
     "@tiptap/pm": "^2.2.4",
     "@tiptap/react": "^2.2.4",
@@ -22,6 +21,7 @@
     "autoprefixer": "^10.4.13",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "date-fns": "^3.6.0",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.7",
     "firebase": "^9.15.0",
@@ -38,6 +38,7 @@
     "react-simple-typewriter": "^5.0.1",
     "slate": "^0.87.0",
     "slate-react": "^0.88.0",
+    "sonner": "^1.4.41",
     "swr": "^2.2.2",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.2.4",

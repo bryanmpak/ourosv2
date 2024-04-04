@@ -2,8 +2,8 @@ import "../styles/globals.css"
 import type { AppProps } from "next/app"
 import Layout from "../components/Layout"
 import { UserContext } from "../components/UserContext"
-import { Toaster } from "../components/Toast/Toaster"
 import Head from "next/head"
+import { Toaster } from "sonner"
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -18,8 +18,19 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           <link rel='shortcut icon' href='/favicon.ico' />
         </Head>
         <Component {...pageProps} />
+        <Toaster
+          toastOptions={{
+            unstyled: true,
+            // TODO: change this to look good
+            classNames: {
+              error: "bg-red-400",
+              success: "text-green-400",
+              warning: "text-yellow-400",
+              info: "bg-blue-400",
+            },
+          }}
+        />
       </Layout>
-      <Toaster />
     </UserContext>
   )
 }
