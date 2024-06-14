@@ -1,7 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { doc, getDoc } from "firebase/firestore"
 import { auth, db } from "./firebaseConfig"
-import { toast } from "./useToast"
 
 const SHARED_PASSWORD = process.env.NEXT_PUBLIC_SHARED_SECRET
 

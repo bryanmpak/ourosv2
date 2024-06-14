@@ -5,7 +5,6 @@ import { BaseEditor, createEditor, Descendant, Editor } from "slate"
 import { Editable, ReactEditor, Slate, withReact } from "slate-react"
 import { db } from "../utils/firebaseConfig"
 import { Context } from "./UserContext"
-import { toast } from "../utils/useToast"
 import { useRouter } from "next/router"
 
 // look into refactoring to use alternate to slateJS like editorJS, it's confusing AF
@@ -66,15 +65,15 @@ export default function TextInput() {
       children: text,
     })
     setEditorValue(initialValue)
-    toast({
-      title: "Message sent!",
-      variant: toastVariant,
-    })
+    // toast({
+    //   title: "Message sent!",
+    //   variant: toastVariant,
+    // })
   }
 
   return (
-    <div className="font-sans mt-4">
-      <div className="overflow-scroll p-4 text-text text-base border-2 h-[50vh] border-neutral rounded-xl">
+    <div className='font-sans mt-4'>
+      <div className='overflow-scroll p-4 text-text text-base border-2 h-[50vh] border-neutral rounded-xl'>
         <Slate
           editor={editor}
           value={editorValue}
@@ -89,7 +88,7 @@ export default function TextInput() {
           }}
         >
           <Editable
-            placeholder="type away!"
+            placeholder='type away!'
             autoFocus
             renderLeaf={renderLeaf}
             onKeyDown={(event) => {
@@ -105,9 +104,9 @@ export default function TextInput() {
         </Slate>
       </div>
 
-      <div className="flex justify-between">
+      <div className='flex justify-between'>
         <button
-          className="mt-4 h-10 w-1/4 border-neutral border-2 rounded-xl font-sans text-text text-sm hover:bg-neutral"
+          className='mt-4 h-10 w-1/4 border-neutral border-2 rounded-xl font-sans text-text text-sm hover:bg-neutral'
           onClick={() => saveLetter()}
         >
           send ❤️

@@ -1,23 +1,22 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { collection, getDocs } from 'firebase/firestore'
-import { signIn } from '../utils/signin'
-import { db } from '../utils/firebaseConfig'
-import { Context } from './UserContext'
-import { toast } from '../utils/useToast'
-import { useRouter } from 'next/router'
+import React, { useState, useEffect, useContext } from "react"
+import { collection, getDocs } from "firebase/firestore"
+import { signIn } from "../utils/signin"
+import { db } from "../utils/firebaseConfig"
+import { Context } from "./UserContext"
+import { useRouter } from "next/router"
 
 const SignIn = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
   const [usernames, setUsernames] = useState<string[]>([])
   const { user, setUser } = useContext(Context)
 
   const router = useRouter()
-  const toastVariant = user !== 'mar' || user !== 'pak' ? 'guest' : 'default'
+  const toastVariant = user !== "mar" || user !== "pak" ? "guest" : "default"
 
   useEffect(() => {
     const fetchUsernames = async () => {
-      const querySnapshot = await getDocs(collection(db, 'users'))
+      const querySnapshot = await getDocs(collection(db, "users"))
       const usernamesArray: string[] = []
       querySnapshot.forEach((doc) => {
         usernamesArray.push(doc.id)
@@ -28,30 +27,30 @@ const SignIn = () => {
   }, [])
 
   const handleSignIn = async () => {
-    setPassword('')
+    setPassword("")
     try {
       await signIn(username, password, false)
-      toast({
-        title: 'Successfully signed in 🥳',
-        description: 'Enjoy using the app ❤️',
-        variant: toastVariant,
-      })
+      // toast({
+      //   title: 'Successfully signed in 🥳',
+      //   description: 'Enjoy using the app ❤️',
+      //   variant: toastVariant,
+      // })
       setUser(username)
-      window.localStorage.setItem('user', username)
-      router.push('/')
+      window.localStorage.setItem("user", username)
+      router.push("/")
     } catch (error) {
       // probably add a toast notification here
-      toast({
-        title: 'Error signing in.',
-        description: 'Please try again.',
-        variant: 'destructive',
-      })
-      console.error('Error signing in: ', error)
+      // toast({
+      //   title: 'Error signing in.',
+      //   description: 'Please try again.',
+      //   variant: 'destructive',
+      // })
+      console.error("Error signing in: ", error)
     }
   }
 
   const handleGuestLogIn = () => {
-    setUser('Guest-1')
+    setUser("Guest-1")
   }
 
   return (
