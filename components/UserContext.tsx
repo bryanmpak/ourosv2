@@ -1,13 +1,23 @@
+"use client"
+
 import { createContext, useEffect, useState } from "react"
 
-const Context = createContext(null)
+const Context = createContext<{
+  user: string | null
+  setUser: React.Dispatch<React.SetStateAction<string | null>>
+  toggleUser: () => void
+}>({
+  user: null,
+  setUser: () => {},
+  toggleUser: () => {},
+})
 
 type Props = {
   children: React.ReactNode
 }
 
 function UserContext({ children }: Props) {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<string | null>(null)
 
   useEffect(() => {
     // set this up so others can take a look but not access the data

@@ -1,3 +1,5 @@
+"use client"
+
 import { addDoc, collection, serverTimestamp } from "firebase/firestore"
 import isHotkey from "is-hotkey"
 import { useCallback, useContext, useState } from "react"

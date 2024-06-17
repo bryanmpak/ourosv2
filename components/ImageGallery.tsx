@@ -1,3 +1,5 @@
+"use client"
+
 import { ref, getDownloadURL, listAll } from "firebase/storage"
 import { storage } from "../utils/firebaseConfig"
 import { useContext, useEffect, useState } from "react"

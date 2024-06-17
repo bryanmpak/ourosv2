@@ -1,12 +1,11 @@
-import { useContext } from "react"
 import Countdown from "../components/Countdown"
 import DailyQuote from "../components/DailyQuote"
 import ImageGallery from "../components/ImageGallery"
 import SignIn from "../components/SignIn"
-import { Context } from "../components/UserContext"
+import { currentUser, useUser } from "@clerk/nextjs"
 
-export default function Home() {
-  const { user } = useContext(Context)
+export default async function Home() {
+  const user = await currentUser()
 
   if (!user) {
     return <SignIn />
@@ -14,8 +13,8 @@ export default function Home() {
 
   return (
     <>
-      {(user === "pak" || user === "mar") && <Countdown />}
-      <DailyQuote />
+      <Countdown />
+      {/* <DailyQuote /> */}
       <ImageGallery />
     </>
   )
