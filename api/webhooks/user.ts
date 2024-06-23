@@ -1,12 +1,9 @@
-// webhook to push userId to db https://clerk.com/docs/integrations/webhooks/sync-data
-
 import { Webhook } from "svix"
 import { headers } from "next/headers"
 import { WebhookEvent } from "@clerk/nextjs/server"
-import { prisma } from "../../../utils/prisma"
 
 export async function POST(req: Request) {
-  // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
+  // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
 
   if (!WEBHOOK_SECRET) {
@@ -51,20 +48,14 @@ export async function POST(req: Request) {
     })
   }
 
-  // push id & name to db when user is created
-
+  // Do something with the payload
+  // For this guide, you simply log the payload to the console
+  const { id } = evt.data
   const eventType = evt.type
 
   if (eventType === "user.created") {
-    const { id, first_name, last_name, ...attributes } = evt.data
-
-    await prisma.user.create({
-      data: {
-        userId: id,
-        // name: first_name + " " + last_name,
-      },
-    })
+    console.log("userId:", id)
   }
 
-  return new Response("", { status: 200 })
+  return new Response(`userId: ${id}`, { status: 200 })
 }

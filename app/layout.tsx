@@ -1,4 +1,11 @@
-import { ClerkProvider, currentUser, useUser } from "@clerk/nextjs"
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs"
+import { currentUser } from "@clerk/nextjs/server"
 import { Metadata } from "next"
 import { Kumbh_Sans } from "next/font/google"
 import Header from "../components/Header"
@@ -28,8 +35,8 @@ export default async function RootLayout({
     (!user || user.firstName) === "Mari" ? "theme-mar" : "theme-pak"
 
   return (
-    <html lang='en' className={kumbhsans.className}>
-      <ClerkProvider>
+    <ClerkProvider>
+      <html lang='en' className={kumbhsans.className}>
         <body>
           <div className={`${toggleBg} ${toggleTheme} min-h-full`}>
             <div
@@ -43,7 +50,7 @@ export default async function RootLayout({
             </div>
           </div>
         </body>
-      </ClerkProvider>
-    </html>
+      </html>
+    </ClerkProvider>
   )
 }

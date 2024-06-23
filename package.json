@@ -10,7 +10,7 @@
     "export-data": "tsx prisma/scripts/export-data.ts"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.29.10",
+    "@clerk/nextjs": "^5.0.1",
     "@next/font": "13.0.7",
     "@prisma/client": "^5.12.0",
     "@tiptap/extension-placeholder": "^2.2.4",
