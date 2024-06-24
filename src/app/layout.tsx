@@ -2,9 +2,9 @@ import { ClerkProvider } from "@clerk/nextjs"
 import { currentUser } from "@clerk/nextjs/server"
 import { Metadata } from "next"
 import { Kumbh_Sans } from "next/font/google"
+import "../styles/globals.css"
 import Header from "../components/Header"
 import Navbar from "../components/Navbar"
-import "../styles/globals.css"
 
 export const metadata: Metadata = {
   title: "ourOS ❤️",
