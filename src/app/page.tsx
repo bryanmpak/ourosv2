@@ -1,19 +1,21 @@
-import { SignIn, SignOutButton } from "@clerk/nextjs"
+import { SignIn, SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs"
 import { currentUser } from "@clerk/nextjs/server"
 import Countdown from "../components/Countdown"
 import ImageGallery from "../components/ImageGallery"
+import SignInPage from "./(clerk)/sign-in/[[...sign-in]]/page"
 
 export default async function Home() {
-  const user = await currentUser()
-  if (!user) {
-    return <SignIn routing='hash' />
-  }
   return (
     <>
-      <Countdown />
-      {/* <DailyQuote /> */}
-      <ImageGallery />
-      <SignOutButton />
+      <SignedOut>
+        <SignInPage />
+      </SignedOut>
+      <SignedIn>
+        <Countdown />
+        {/* <DailyQuote /> */}
+        <ImageGallery />
+        <SignOutButton />
+      </SignedIn>
     </>
   )
 }

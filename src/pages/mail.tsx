@@ -35,9 +35,9 @@ export default function Mail() {
       limit(1)
     )
     const querySnapshot = await getDocs(q)
-    const queryPromise = querySnapshot.forEach((doc) => {
-      docArr.push(doc.data())
-    })
+    // const queryPromise = querySnapshot.forEach((doc) => {
+    //   docArr.push(doc.data() as)
+    // })
     const docData = docArr[0]
 
     const serialize = (node) => {

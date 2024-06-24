@@ -50,7 +50,7 @@ export default function TextInput() {
   const [editorValue, setEditorValue] = useState(initialValue)
   const { user } = useContext(Context)
 
-  const toastVariant = user !== "mar" || user !== "pak" ? "guest" : "default"
+  const toastVariant = user !== "mar" ? "guest" : "default"
   const router = useRouter()
 
   const renderLeaf = useCallback((props) => {

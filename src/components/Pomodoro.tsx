@@ -7,7 +7,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore"
 import { motion } from "framer-motion"
-import { useContext, useEffect, useState } from "react"
+import { SetStateAction, useContext, useEffect, useState } from "react"
 import {
   buildStyles,
   CircularProgressbarWithChildren,
@@ -43,7 +43,7 @@ export default function Pomodoro() {
 
   useEffect(() => {
     getDailyStreak().then((streak) => {
-      setDailyStreak(streak)
+      setDailyStreak(streak as SetStateAction<number>)
       setIsLoading(false)
       // console.log(streak)
     })
@@ -76,11 +76,11 @@ export default function Pomodoro() {
     const docArr = []
     querySnapshot.forEach((doc) => {
       if (doc.data().timestamp.seconds > today) {
-        docArr.push(doc.data())
+        // docArr.push(doc.data() as DocumentType)
       }
     })
-    const sum = docArr.reduce((acc, o) => acc + parseInt(o.children), 0)
-    return sum
+    // const sum = docArr.reduce((acc, o) => acc + parseInt(o.children), 0)
+    // return sum
   }
 
   function endCycle() {
@@ -88,7 +88,7 @@ export default function Pomodoro() {
     setMode("work")
     setTimer(workTime)
     getDailyStreak().then((streak) => {
-      setDailyStreak(streak)
+      setDailyStreak(streak as SetStateAction<number>)
     })
   }
 

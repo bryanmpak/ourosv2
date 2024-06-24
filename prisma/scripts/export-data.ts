@@ -1,8 +1,8 @@
 import { config } from "dotenv"
 config()
 
-import { db } from "../../utils/firebaseAdminConfig"
-import { prisma } from "../../utils/prisma"
+import { db } from "../../src/utils/firebaseAdminConfig"
+import { prisma } from "../../src/utils/prisma"
 
 interface Paragraph {
   children: any[] // Define the actual type if known
