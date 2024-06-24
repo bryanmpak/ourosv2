@@ -1,8 +1,7 @@
-import Countdown from "../components/Countdown"
-import DailyQuote from "../components/DailyQuote"
-import ImageGallery from "../components/ImageGallery"
 import { SignIn, SignOutButton } from "@clerk/nextjs"
 import { currentUser } from "@clerk/nextjs/server"
+import Countdown from "../components/Countdown"
+import ImageGallery from "../components/ImageGallery"
 
 export default async function Home() {
   const user = await currentUser()

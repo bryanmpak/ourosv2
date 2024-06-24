@@ -1,10 +1,4 @@
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs"
+import { ClerkProvider } from "@clerk/nextjs"
 import { currentUser } from "@clerk/nextjs/server"
 import { Metadata } from "next"
 import { Kumbh_Sans } from "next/font/google"
@@ -25,6 +19,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const user = await currentUser()
+  console.log("Current user:", user)
 
   const toggleBg =
     (!user || user.firstName) === "Mari"

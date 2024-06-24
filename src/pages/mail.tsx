@@ -75,7 +75,7 @@ export default function Mail() {
   }, [user])
 
   return (
-    <div className="text-title font-sans p-4 overflow-scroll text-sm">
+    <div className='text-title font-sans p-4 overflow-scroll text-sm'>
       {parse(letters)}
     </div>
   )
