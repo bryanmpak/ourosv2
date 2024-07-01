@@ -7,12 +7,11 @@ import { usePathname, useRouter } from "next/navigation"
 
 export default function Navbar() {
   const pathname = usePathname()
-  const navLinks = ["home", "timer", "mail", "write"]
+  const navLinks = ["home", "pomodoro", "mail", "write"]
+
   const navEl = navLinks.map((link, i) => {
     const linkName = link === "home" ? "/" : `/${link}`
-
     return (
-      // <button key={i}>
       <Link
         key={i}
         href={linkName}
@@ -23,7 +22,6 @@ export default function Navbar() {
           <div className='w-[3px] h-[3px] rounded-full bg-light mt-[1px]'></div>
         )}
       </Link>
-      // </button>
     )
   })
 

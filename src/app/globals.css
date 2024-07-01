@@ -47,15 +47,25 @@
   }
 
   html[data-theme="light"] body {
-    background: #ffffff;
+    background: radial-gradient(
+      ellipse at center,
+      #f0f0f0 0%,
+      #e0e0e0 50%,
+      #ffffff 100%
+    );
   }
 
   html[data-theme="dark"] body {
-    background: radial-gradient(ellipse at center, #3f3f3f, #1a1a1a);
+    background: radial-gradient(
+      ellipse at center,
+      #3f3f46 0%,
+      #18181b 50%,
+      #000000 100%
+    );
   }
 
   html[data-theme="mar"] body {
-    background: linear-gradient(to top, #fbcfe8, #fda4af);
+    background: linear-gradient(to top, #fecdd3 0%, #fecdd3 50%, #fda4af 100%);
   }
 }
 
