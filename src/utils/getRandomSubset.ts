@@ -1,5 +1,5 @@
-// fisher-yates shuffle
-export function getRandomSubset(arr, k) {
+// Fisher-Yates shuffle to get a random subset of an array.
+export function getRandomSubset<T>(arr: T[], k: number): T[] {
   let n = arr.length
   for (let i = 0; i < k; i++) {
     // Generate a random index between i and n-1
