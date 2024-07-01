@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #__next {
+    height: 100%;
+  }
+  :root {
+    --color-title: theme("colors.black");
+    --color-text: #1a1a1a;
+    --color-nav_bg: theme("colors.white");
+    --color-light: theme("colors.zinc.400");
+    --color-neutral: theme("colors.zinc.300");
+    --color-dark: #f5f5f5;
+    --color-shadow: #555555;
+    --color-hover: theme("colors.zinc.600");
+    --color-accent: theme("colors.zinc.700");
+    --color-destructive: #ff5555;
+  }
+
+  html[data-theme="dark"] {
+    --color-title: theme("colors.white");
+    --color-text: #bebebe;
+    --color-nav_bg: theme("colors.black");
+    --color-light: theme("colors.zinc.700");
+    --color-neutral: theme("colors.zinc.800");
+    --color-dark: #1a1a1a;
+    --color-shadow: #f7ba2b;
+    --color-hover: theme("colors.zinc.400");
+    --color-accent: theme("colors.zinc.300");
+    --color-destructive: #ff5555;
+  }
+  html[data-theme="mar"] {
+    --color-title: theme("colors.white");
+    --color-text: theme("colors.rose.400");
+    --color-nav_bg: theme("colors.rose.300");
+    --color-light: theme("colors.rose.300");
+    --color-neutral: theme("colors.rose.300");
+    --color-dark: theme("colors.rose.200");
+    --color-shadow: #aae3ea;
+    --color-hover: theme("colors.rose.500");
+    --color-accent: theme("colors.rose.400");
+    --color-destructive: #ff5555;
+  }
+
+  html[data-theme="light"] body {
+    background: #ffffff;
+  }
+
+  html[data-theme="dark"] body {
+    background: radial-gradient(ellipse at center, #3f3f3f, #1a1a1a);
+  }
+
+  html[data-theme="mar"] body {
+    background: linear-gradient(to top, #fbcfe8, #fda4af);
+  }
+}
+
+.tiptap.ProseMirror {
+  outline: none;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: var(--color-text);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

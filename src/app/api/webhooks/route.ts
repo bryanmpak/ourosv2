@@ -33,10 +33,6 @@ export async function POST(req: Request) {
     const payload = await req.json()
     const body = JSON.stringify(payload)
 
-    // Log payload and headers for debugging
-    console.log("Received payload:", payload)
-    console.log("Headers:", { svix_id, svix_timestamp, svix_signature })
-
     // Create a new Svix instance with your secret.
     const wh = new Webhook(WEBHOOK_SECRET)
 
@@ -56,18 +52,14 @@ export async function POST(req: Request) {
       })
     }
 
-    const { id } = evt.data
-    const eventType = evt.type
+    if (evt.type === "user.created") {
+      const { id, first_name } = evt.data
 
-    // Log event type and id
-    console.log("Event Type:", eventType)
-    console.log("Event Data ID:", id)
-
-    if (eventType === "user.created") {
       try {
         const user = await prisma.user.create({
           data: {
             userId: id as string,
+            firstName: first_name as string,
           },
         })
         console.log("User created:", user)

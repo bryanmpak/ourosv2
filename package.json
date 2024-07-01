@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.0.1",
+    "@headlessui/react": "^2.1.1",
     "@prisma/client": "^5.15.1",
     "@tiptap/extension-placeholder": "^2.2.4",
     "@tiptap/pm": "^2.2.4",
@@ -31,6 +32,7 @@
     "is-hotkey": "^0.2.0",
     "lucide-react": "^0.271.0",
     "next": "^14.2.4",
+    "next-themes": "^0.3.0",
     "postcss": "^8.4.20",
     "react": "18.2.0",
     "react-circular-progressbar": "^2.1.0",
