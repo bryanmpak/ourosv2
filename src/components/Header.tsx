@@ -1,19 +1,11 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useContext, useEffect, useState } from "react"
-import { Context } from "./UserContext"
-import { useTheme } from "next-themes"
+import { useState } from "react"
+import ThemeToggle from "./ThemeToggle"
 
 export default function Header() {
-  const { user, toggleUser } = useContext(Context)
   const [date, setDate] = useState(new Date())
-  const { theme } = useTheme()
 
-  console.log("theme", theme)
-
-  const toggleCSS =
-    user === "mar" || user === "Guest-2" ? "justify-end" : "justify-start"
   return (
     <div className='flex gap-6 md:gap-12 px-2 xs:py-2'>
       <div className='text-5xl tracking-tighter text-title font-bold'>
@@ -22,7 +14,8 @@ export default function Header() {
       </div>
       <div className='w-full h-4 border-t mt-7'></div>
       <div className='mt-3'>
-        <button
+        <ThemeToggle />
+        {/* <button
           disabled={!user}
           style={{ cursor: !user ? "not-allowed" : "pointer" }}
           className={
@@ -36,7 +29,7 @@ export default function Header() {
             layout
             transition={spring}
           />
-        </button>
+        </button> */}
         <div className='mt-1 ml-1 text-xl leading-5 tracking-tighter text-title'>
           {date && (
             <>

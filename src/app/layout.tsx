@@ -28,7 +28,7 @@ export default async function RootLayout({
         <body className={kumbhsans.className}>
           <ThemeProvider
             // attribute='data-theme'
-            defaultTheme='dark'
+            // defaultTheme='dark'
             enableSystem
             enableColorScheme
             storageKey='ouros-theme'
