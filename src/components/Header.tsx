@@ -3,10 +3,14 @@
 import { motion } from "framer-motion"
 import { useContext, useEffect, useState } from "react"
 import { Context } from "./UserContext"
+import { useTheme } from "next-themes"
 
 export default function Header() {
   const { user, toggleUser } = useContext(Context)
   const [date, setDate] = useState(new Date())
+  const { theme } = useTheme()
+
+  console.log("theme", theme)
 
   const toggleCSS =
     user === "mar" || user === "Guest-2" ? "justify-end" : "justify-start"
