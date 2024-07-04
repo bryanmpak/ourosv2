@@ -11,9 +11,12 @@ export default async function Home() {
     return <SignInPage />
   }
 
-  // add a prisma call server action to pass down image gallery
+  // FIREBASE: add a prisma call server action to pass down image gallery
+  // let photoUrls = await getPhotosFirebase()
+
+  // AWS S3:
   let photoUrls = await getPhotos()
-  console.log("photoUrls", photoUrls)
+  // console.log("photoUrls", photoUrls)
   if (photoUrls.length === 0) {
     photoUrls = ["Photo", "Gallery", "For", "Logged-In", "Users :)"]
   }

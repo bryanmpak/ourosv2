@@ -7,9 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export-data": "tsx prisma/scripts/export-data.ts"
+    "export-data": "tsx prisma/scripts/export-data.ts",
+    "list-s3": "tsx src/utils/scripts/listBucketContents.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.609.0",
+    "@aws-sdk/credential-providers": "^3.609.0",
+    "@aws-sdk/s3-request-presigner": "^3.609.0",
     "@clerk/nextjs": "^5.0.1",
     "@headlessui/react": "^2.1.1",
     "@prisma/client": "^5.15.1",
