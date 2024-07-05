@@ -23,7 +23,7 @@
 
   html[data-theme="dark"] {
     --color-title: theme("colors.white");
-    --color-text: #bebebe;
+    --color-text: theme("colors.zinc.200");
     --color-nav_bg: theme("colors.black");
     --color-light: theme("colors.zinc.700");
     --color-neutral: theme("colors.zinc.800");
@@ -49,8 +49,8 @@
   html[data-theme="light"] body {
     background: radial-gradient(
       ellipse at center,
-      #f0f0f0 0%,
-      #e0e0e0 50%,
+      #fdfdfb 0%,
+      #f8f8f5 50%,
       #ffffff 100%
     );
   }

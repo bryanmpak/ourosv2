@@ -27,8 +27,6 @@ export default async function RootLayout({
       <html lang='en' suppressHydrationWarning>
         <body className={kumbhsans.className}>
           <ThemeProvider
-            // attribute='data-theme'
-            // defaultTheme='dark'
             enableSystem
             enableColorScheme
             storageKey='ouros-theme'
@@ -39,7 +37,7 @@ export default async function RootLayout({
                 className={`max-w-xl flex flex-col h-[90vh] xs:h-screen mx-auto`}
               >
                 <Header />
-                <main className='flex-grow px-6'>{children}</main>
+                <main className='flex-grow px-2 sm:px-6'>{children}</main>
                 <div className='mt-auto px-2 py-4'>
                   <Navbar />
                 </div>
