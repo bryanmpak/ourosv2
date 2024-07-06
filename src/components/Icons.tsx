@@ -69,4 +69,59 @@ export const Icons = {
       />
     </svg>
   ),
+  habits: () => (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='1.5'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='w-6 h-6 text-light'
+    >
+      <path d='M22 11.08V12a10 10 0 1 1-5.93-9.14' />
+      <path d='m9 11 3 3L22 4' />
+    </svg>
+  ),
+  momentos: () => (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='1.5'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='w-6 h-6 text-light'
+    >
+      <path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z' />
+      <path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z' />
+      <path d='M6 8h2' />
+      <path d='M6 12h2' />
+      <path d='M16 8h2' />
+      <path d='M16 12h2' />
+    </svg>
+  ),
+  link: () => (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='1.5'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='w-6 h-6 text-light'
+    >
+      <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71' />
+      <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71' />
+    </svg>
+  ),
 }

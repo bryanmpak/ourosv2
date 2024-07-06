@@ -2,7 +2,7 @@ import Countdown from "../components/Countdown"
 import ImageGallery from "../components/ImageGallery"
 import SignInPage from "./(clerk)/sign-in/[[...sign-in]]/page"
 import { currentUser } from "@clerk/nextjs/server"
-import { getPhotos } from "./actions/getPhotos"
+import { getPhotos } from "./actions/photos"
 
 export default async function Home() {
   // create a separate login page (or use clerk's "elements" beta)

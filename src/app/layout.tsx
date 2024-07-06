@@ -1,11 +1,11 @@
 import { ClerkProvider } from "@clerk/nextjs"
-import { currentUser } from "@clerk/nextjs/server"
 import { Metadata } from "next"
 import { Kumbh_Sans } from "next/font/google"
 import "./globals.css"
 import Header from "../components/Header"
 import Navbar from "../components/Navbar"
 import { ThemeProvider } from "next-themes"
+import { getUser } from "./actions/user"
 
 export const metadata: Metadata = {
   title: "ourOS ❤️",
@@ -22,6 +22,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const user = await getUser()
+
   return (
     <ClerkProvider>
       <html lang='en' suppressHydrationWarning>
@@ -39,7 +41,7 @@ export default async function RootLayout({
                 <Header />
                 <main className='flex-grow px-2 sm:px-6'>{children}</main>
                 <div className='mt-auto px-2 py-4'>
-                  <Navbar />
+                  <Navbar user={user} />
                 </div>
               </div>
             </div>
