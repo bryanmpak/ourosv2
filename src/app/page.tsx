@@ -6,6 +6,7 @@ import { getPhotos } from "./actions/photos"
 
 export default async function Home() {
   // create a separate login page (or use clerk's "elements" beta)
+  // have a localStorage item getter, if no item, call db + push to localStorage, if no entry, "Guest"
   const user = await currentUser()
   if (!user) {
     return <SignInPage />
