@@ -5,16 +5,16 @@ import { Icons } from "./Icons"
 import React from "react"
 import { usePathname } from "next/navigation"
 import { User } from "@prisma/client"
-import { useSignIn } from "../hooks/useSignIn"
-import { useAccountLink } from "../hooks/useAccountLink"
+import { useSignInStore } from "../hooks/useSignInStore"
+import { useAccountLinkStore } from "../hooks/useAccountLinkStore"
 
 type NavbarProps = { user: User | null }
 
 export default function Navbar({ user }: NavbarProps) {
   const pathname = usePathname()
   const navLinks = ["home", "pomodoro", "mail", "write", "habits", "momentos"]
-  const signIn = useSignIn()
-  const accountLink = useAccountLink()
+  const signIn = useSignInStore()
+  const accountLink = useAccountLinkStore()
 
   const navEl = navLinks.map((link, i) => {
     const linkName = link === "home" ? "/" : `/${link}`

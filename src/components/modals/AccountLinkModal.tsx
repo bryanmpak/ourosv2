@@ -9,7 +9,7 @@ import { toast } from "sonner"
 import { AccountLinkValidator } from "../../utils/validators/accountLinkValidator"
 import { ZodError } from "zod"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
-import { useAccountLink } from "../../hooks/useAccountLink"
+import { useAccountLinkStore } from "../../hooks/useAccountLinkStore"
 import { InputOTPForm } from "../InputOTPForm"
 import { createLink, submitLink } from "../../app/actions/accountLink"
 
@@ -18,7 +18,7 @@ interface ServerError extends Error {
 }
 
 const AccountLinkModal = () => {
-  const accountLink = useAccountLink()
+  const accountLink = useAccountLinkStore()
   const [emailValue, setEmailValue] = useState("")
   const [createOtpValue, setCreateOtpValue] = useState("")
   const [submitOtpValue, setSubmitOtpValue] = useState("")

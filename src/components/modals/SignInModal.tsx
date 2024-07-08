@@ -5,13 +5,13 @@ import * as SignIn from "@clerk/elements/sign-in"
 import { useTheme } from "next-themes"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { useSignIn } from "../../hooks/useSignIn"
+import { useSignInStore } from "../../hooks/useSignInStore"
 import { Dialog, DialogContent } from "../ui/dialog"
 
 export default function SignInModal() {
   const router = useRouter()
   const { resolvedTheme } = useTheme()
-  const signIn = useSignIn()
+  const signIn = useSignInStore()
 
   return (
     <Dialog open={signIn.isOpen} onOpenChange={signIn.onClose}>
