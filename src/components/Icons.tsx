@@ -124,4 +124,22 @@ export const Icons = {
       <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71' />
     </svg>
   ),
+  signIn: () => (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='1.5'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='w-6 h-6 text-light'
+    >
+      <path d='M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4' />
+      <polyline points='10 17 15 12 10 7' />
+      <line x1='15' x2='3' y1='12' y2='12' />
+    </svg>
+  ),
 }

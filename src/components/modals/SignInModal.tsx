@@ -4,17 +4,20 @@ import * as Clerk from "@clerk/elements/common"
 import * as SignIn from "@clerk/elements/sign-in"
 import { useTheme } from "next-themes"
 import Image from "next/image"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
+import { useSignIn } from "../../hooks/useSignIn"
+import { Dialog, DialogContent } from "../ui/dialog"
 
 export default function SignInModal() {
   const router = useRouter()
   const { resolvedTheme } = useTheme()
+  const signIn = useSignIn()
 
   return (
-    <div className='w-full flex flex-grow items-center sm:px-2 px-0 justify-center mt-12'>
-      <div className='w-96 flex flex-col space-y-4 justify-center rounded-2xl bg-nav_bg border-2 border-neutral bg-[radial-gradient(circle_at_50%_0%,var(--color-nav_bg),var(--color-nav_bg))] py-10 px-8'>
+    <Dialog open={signIn.isOpen} onOpenChange={signIn.onClose}>
+      <DialogContent className='h-1/3 w-96 flex flex-col justify-center'>
         <SignIn.Root>
-          <SignIn.Step name='start' className='w-full flex-grow space-y-4'>
+          <SignIn.Step name='start' className='w-full space-y-4'>
             <header className='flex flex-col items-center'>
               {resolvedTheme === "dark" ? (
                 <Image
@@ -66,7 +69,7 @@ export default function SignInModal() {
         >
           Continue as Guest
         </button>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   )
 }

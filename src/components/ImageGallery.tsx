@@ -28,7 +28,7 @@ export default function ImageGallery({ photoUrls }: ImageGalleryProps) {
   ))
 
   return (
-    <div className='grid grid-cols-[2fr_1fr_2fr] grid-rows-2 gap-1'>
+    <div className='grid grid-cols-[2fr_1fr_2fr] grid-rows-2 gap-1 mt-12'>
       {imgEl}
     </div>
   )

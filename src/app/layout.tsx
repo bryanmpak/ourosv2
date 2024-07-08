@@ -6,6 +6,7 @@ import Header from "../components/Header"
 import Navbar from "../components/Navbar"
 import { ThemeProvider } from "next-themes"
 import { getUser } from "./actions/user"
+import ModalProvider from "../components/ModalProvider"
 
 export const metadata: Metadata = {
   title: "ourOS ❤️",
@@ -34,6 +35,7 @@ export default async function RootLayout({
             storageKey='ouros-theme'
             themes={["light", "dark", "mar"]}
           >
+            <ModalProvider />
             <div className='min-h-full'>
               <div
                 className={`max-w-xl flex flex-col h-[90vh] xs:h-screen mx-auto`}
