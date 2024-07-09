@@ -1,6 +1,6 @@
 import { getPhotos } from "./actions/photos"
-import { getInitialUser } from "./actions/getInitialUser"
 import HomeClient from "../components/HomeClient"
+import { getInitialUser } from "./actions/user"
 
 export default async function Home() {
   const userName = await getInitialUser()
@@ -17,7 +17,6 @@ export default async function Home() {
   return (
     <>
       <HomeClient initialUser={userName} photoUrls={photoUrls} />
-      
     </>
   )
 }
