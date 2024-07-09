@@ -7,14 +7,15 @@ import { usePathname } from "next/navigation"
 import { User } from "@prisma/client"
 import { useSignInStore } from "../hooks/useSignInStore"
 import { useAccountLinkStore } from "../hooks/useAccountLinkStore"
+import { useUserStore } from "../hooks/useUserStore"
 
-type NavbarProps = { user: User | null }
-
-export default function Navbar({ user }: NavbarProps) {
+export default function Navbar() {
   const pathname = usePathname()
   const navLinks = ["home", "pomodoro", "mail", "write", "habits", "momentos"]
   const signIn = useSignInStore()
   const accountLink = useAccountLinkStore()
+  // may need to have the zustand store pull all fields from User model (or set this up another way)
+  const user = useUserStore((state) => state.user)
 
   const navEl = navLinks.map((link, i) => {
     const linkName = link === "home" ? "/" : `/${link}`
