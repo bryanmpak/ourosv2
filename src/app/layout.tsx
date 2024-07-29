@@ -6,6 +6,7 @@ import Header from "../components/Header"
 import Navbar from "../components/Navbar"
 import { ThemeProvider } from "next-themes"
 import ModalProvider from "../components/ModalProvider"
+import { getUser } from "./actions/user"
 
 export const metadata: Metadata = {
   title: "ourOS ❤️",
@@ -17,11 +18,12 @@ const kumbhsans = Kumbh_Sans({
   weight: ["400", "700", "800", "900"],
 })
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+
   return (
     <ClerkProvider>
       <html lang='en' suppressHydrationWarning>

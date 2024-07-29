@@ -1,12 +1,13 @@
 "use client"
 
-import * as Clerk from "@clerk/elements/common"
-import * as SignIn from "@clerk/elements/sign-in"
+// import * as Clerk from "@clerk/elements/common"
+// import * as SignIn from "@clerk/elements/sign-in"
 import { useTheme } from "next-themes"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useSignInStore } from "../../hooks/useSignInStore"
 import { Dialog, DialogContent } from "../ui/dialog"
+import { SignIn } from "@clerk/nextjs"
 
 export default function SignInModal() {
   const router = useRouter()
@@ -16,7 +17,8 @@ export default function SignInModal() {
   return (
     <Dialog open={signIn.isOpen} onOpenChange={signIn.onClose}>
       <DialogContent className='h-1/3 w-96 flex flex-col justify-center'>
-        <SignIn.Root>
+      <SignIn />
+        {/* <SignIn.Root>
           <SignIn.Step name='start' className='w-full space-y-4'>
             <header className='flex flex-col items-center'>
               {resolvedTheme === "dark" ? (
@@ -60,7 +62,7 @@ export default function SignInModal() {
               </Clerk.Connection>
             </div>
           </SignIn.Step>
-        </SignIn.Root>
+        </SignIn.Root> */}
         {/* TODO: change so mounting occurs at the same time */}
         <button
           // TODO: add something where its clear that "user" = "Guest"

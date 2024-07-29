@@ -1,13 +1,20 @@
 "use client"
 
 import Image from "next/image"
-import { useUser } from "@clerk/nextjs"
 
 type ImageGalleryProps = {
   photoUrls: string[]
+  userFirstName: string
 }
 
-export default function ImageGallery({ photoUrls }: ImageGalleryProps) {
+export default function ImageGallery({ userFirstName, photoUrls}: ImageGalleryProps) {
+
+  /*
+  TODO:
+    - make image gallery responsive, medium & lg size
+    - cache images to rotate every refresh or set time
+  */
+
   const imgEl = photoUrls.map((photo, i) => (
     <div
       key={i}
@@ -15,6 +22,7 @@ export default function ImageGallery({ photoUrls }: ImageGalleryProps) {
         i === 0 ? "row-span-2 h-[calc(250px - 1rem)]" : "row-span-1 h-[125px]"
       } rounded-md border border-white/10 bg-white/5 backdrop-blur-xl relative`}
     >
+      {userFirstName === "Guest" ? <div></div> : 
       <Image
         className='rounded-md'
         style={{ objectFit: "cover" }}
@@ -24,6 +32,7 @@ export default function ImageGallery({ photoUrls }: ImageGalleryProps) {
         priority
         sizes='50vw'
       />
+    }
     </div>
   ))
 

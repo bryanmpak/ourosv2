@@ -3,8 +3,9 @@ import { prisma } from "../../utils/prisma"
 
 export const getUser = async () => {
   const clerkUser = await currentUser()
+  console.log('clerkUser',clerkUser)
   if (!clerkUser) {
-    return "Guest"
+    return
   }
 
   const user = await prisma.user.findFirst({
@@ -14,7 +15,7 @@ export const getUser = async () => {
   return user
 }
 
-export const getInitialUser = async () => {
+export const getUserFirstName = async () => {
   const clerkUser = await currentUser()
   if (!clerkUser) {
     return "Guest"
