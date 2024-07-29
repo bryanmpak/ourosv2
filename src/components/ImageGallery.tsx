@@ -10,9 +10,17 @@ type ImageGalleryProps = {
 export default function ImageGallery({ userFirstName, photoUrls}: ImageGalleryProps) {
 
   /*
-  TODO:
+  TODO: 
+    image gallery:
     - make image gallery responsive, medium & lg size
     - cache images to rotate every refresh or set time
+
+    account linking setup
+    - appearance: refactor css
+    - check functionality
+
+    test timer
+    test letters
   */
 
   const imgEl = photoUrls.map((photo, i) => (
