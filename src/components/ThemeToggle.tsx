@@ -10,7 +10,6 @@ const ThemeSwitchToggle = () => {
   const [mounted, setMounted] = useState(false)
   const { setTheme, resolvedTheme, theme } = useTheme()
   const { user } = useUser()
-  // const user = "Mari"
 
   useEffect(() => {
     setMounted(true)

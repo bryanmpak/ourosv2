@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar"
 import { ThemeProvider } from "next-themes"
 import ModalProvider from "../components/ModalProvider"
 import { getUser } from "./actions/user"
+import { Toaster } from "sonner"
 
 export const metadata: Metadata = {
   title: "ourOS ❤️",
@@ -34,6 +35,7 @@ export default function RootLayout({
             storageKey='ouros-theme'
             themes={["light", "dark", "mar"]}
           >
+            <Toaster position='top-center' />
             <ModalProvider />
             <div className='min-h-full'>
               <div

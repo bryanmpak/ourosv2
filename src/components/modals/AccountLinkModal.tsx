@@ -12,6 +12,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
 import { useAccountLinkStore } from "../../hooks/useAccountLinkStore"
 import { InputOTPForm } from "../InputOTPForm"
 import { createLink, submitLink } from "../../app/actions/accountLink"
+import { DialogTitle } from "@headlessui/react"
+import { DialogDescription } from "@radix-ui/react-dialog"
 
 interface ServerError extends Error {
   message: string
@@ -103,16 +105,17 @@ const AccountLinkModal = () => {
 
   return (
     <Dialog open={accountLink.isOpen} onOpenChange={accountLink.onClose}>
-      <DialogContent className=' px-10'>
+      <DialogContent className='px-10'>
         <DialogHeader className='border-b pb-3'>
           <h2 className='font-medium text-lg'>link to account</h2>
         </DialogHeader>
+        
         <Tabs defaultValue='create'>
           <TabsList className='grid w-full grid-cols-2'>
             <TabsTrigger value='create'>create link</TabsTrigger>
             <TabsTrigger value='submit'>submit link</TabsTrigger>
           </TabsList>
-          <TabsContent value='create'>
+          <TabsContent tabIndex={-1} value='create'>
             <div className='pt-4 flex flex-col gap-y-4'>
               <div className='flex flex-col space-y-4'>
                 <Label>partner&apos;s account email </Label>
@@ -133,7 +136,12 @@ const AccountLinkModal = () => {
                   />
                 </div>
               </div>
-              <button onClick={handleCreate}>create link</button>
+              <button 
+              className="h-10 px-4 py-2 bg-title text-nav_bg hover:opacity-90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-nav_bg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-title focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" 
+              onClick={handleCreate}
+              >
+                create link
+              </button>
             </div>
           </TabsContent>
           <TabsContent value='submit'>
@@ -147,7 +155,7 @@ const AccountLinkModal = () => {
                   />
                 </div>
               </div>
-              <button onClick={handleSubmit}>submit link</button>
+              <button className="h-10 px-4 py-2 bg-title text-nav_bg hover:opacity-90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-nav_bg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-title focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" onClick={handleSubmit}>submit link</button>
             </div>
           </TabsContent>
         </Tabs>
