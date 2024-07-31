@@ -3,10 +3,14 @@ import { Metadata } from "next";
 import { Kumbh_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
-import Navbar from "../components/Navbar";
 import { ThemeProvider } from "next-themes";
 import ModalProvider from "../components/ModalProvider";
 import { Toaster } from "sonner";
+import dynamic from "next/dynamic";
+
+const Navbar = dynamic(() => import("../components/Navbar"), {
+  ssr: true,
+});
 
 export const metadata: Metadata = {
   title: "ourOS ❤️",
