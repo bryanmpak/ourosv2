@@ -1,49 +1,47 @@
-import { ClerkProvider } from "@clerk/nextjs"
-import { Metadata } from "next"
-import { Kumbh_Sans } from "next/font/google"
-import "./globals.css"
-import Header from "../components/Header"
-import Navbar from "../components/Navbar"
-import { ThemeProvider } from "next-themes"
-import ModalProvider from "../components/ModalProvider"
-import { getUser } from "./actions/user"
-import { Toaster } from "sonner"
+import { ClerkProvider } from "@clerk/nextjs";
+import { Metadata } from "next";
+import { Kumbh_Sans } from "next/font/google";
+import "./globals.css";
+import Header from "../components/Header";
+import Navbar from "../components/Navbar";
+import { ThemeProvider } from "next-themes";
+import ModalProvider from "../components/ModalProvider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "ourOS ❤️",
   description: "a digital collection specially for us.",
-}
+};
 
 const kumbhsans = Kumbh_Sans({
   subsets: ["latin"],
   weight: ["400", "700", "800", "900"],
-})
+});
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-
   return (
     <ClerkProvider>
-      <html lang='en' suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning>
         <body className={kumbhsans.className}>
           <ThemeProvider
             enableSystem
             enableColorScheme
-            storageKey='ouros-theme'
+            storageKey="ouros-theme"
             themes={["light", "dark", "mar"]}
           >
-            <Toaster position='top-center' />
+            <Toaster position="top-center" />
             <ModalProvider />
-            <div className='min-h-full'>
+            <div className="min-h-full">
               <div
                 className={`max-w-xl flex flex-col h-[90vh] xs:h-screen mx-auto`}
               >
                 <Header />
-                <main className='flex-grow px-2 sm:px-6'>{children}</main>
-                <div className='mt-auto px-2 py-4'>
+                <main className="flex-grow px-2 sm:px-6">{children}</main>
+                <div className="mt-auto px-2 py-4">
                   <Navbar />
                 </div>
               </div>
@@ -52,5 +50,5 @@ export default function RootLayout({
         </body>
       </html>
     </ClerkProvider>
-  )
+  );
 }

@@ -1,10 +1,13 @@
-import { currentUser } from "@clerk/nextjs/server"
-import { prisma } from "../../utils/prisma"
+"use server";
+
+import { currentUser } from "@clerk/nextjs/server";
+import { prisma } from "../../utils/prisma";
+import { revalidatePath } from "next/cache";
 
 export const createLink = async (partnerEmail: string, passcode: string) => {
-  const user = await currentUser()
+  const user = await currentUser();
   if (!user) {
-    throw new Error("unauthorized")
+    throw new Error("unauthorized");
   }
 
   try {
@@ -26,17 +29,17 @@ export const createLink = async (partnerEmail: string, passcode: string) => {
       select: {
         id: true, // Select only the necessary fields
       },
-    })
-    return link
+    });
+    return link;
   } catch (err) {
-    console.error("Error creating entry:", err)
+    console.error("Error creating entry:", err);
   }
-}
+};
 
 export const submitLink = async (partnerEmail: string, passcode: string) => {
-  const user = await currentUser()
+  const user = await currentUser();
   if (!user) {
-    throw new Error("unauthorized")
+    throw new Error("unauthorized");
   }
 
   const submit = await prisma.accountLink.findFirst({
@@ -50,12 +53,12 @@ export const submitLink = async (partnerEmail: string, passcode: string) => {
       passcode: true,
       partnerId: true,
     },
-  })
+  });
   if (!submit || submit.partnerEmail !== partnerEmail) {
-    throw new Error("request not found or you're not the intended recipient")
+    throw new Error("request not found or you're not the intended recipient");
   }
   if (submit.passcode !== passcode) {
-    throw new Error("incorrect passcode")
+    throw new Error("incorrect passcode");
   }
   await prisma.accountLink.update({
     where: {
@@ -64,7 +67,7 @@ export const submitLink = async (partnerEmail: string, passcode: string) => {
     data: {
       partnerId: user.id,
     },
-  })
+  });
   if (!!submit.partnerId) {
     // update submitting user isAccountLinked to true + tie partners userid
     await prisma.user.update({
@@ -75,7 +78,7 @@ export const submitLink = async (partnerEmail: string, passcode: string) => {
         isAccountLinked: true,
         partnerId: submit.userId,
       },
-    })
+    });
 
     // update creating user isAccountLinked to true + tie partners userid
     await prisma.user.update({
@@ -86,6 +89,8 @@ export const submitLink = async (partnerEmail: string, passcode: string) => {
         isAccountLinked: true,
         partnerId: submit.partnerId,
       },
-    })
+    });
   }
-}
+
+  revalidatePath("/");
+};
