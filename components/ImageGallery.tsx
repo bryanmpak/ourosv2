@@ -28,10 +28,13 @@ export default function ImageGallery({
     <div
       key={i}
       className={`${i === 0 || i === 4 ? "col-span-2" : "col-span-1"} ${
-        i === 0 ? "row-span-2 h-[calc(250px - 1rem)]" : "row-span-1 h-[125px]"
+        i === 0
+          ? "row-span-2 h-[calc(250px - 1rem)] md:h-[calc(300px - 1rem)] lg:h-[calc(400px - 1rem)]"
+          : "row-span-1 h-[125px] md:h-[150px] lg:h-[200px]"
       } rounded-md border border-white/10 bg-white/5 backdrop-blur-xl relative`}
     >
       {userFirstName === "Guest" ? (
+        // TODO: add placeholder imgs
         <div></div>
       ) : (
         <Image
