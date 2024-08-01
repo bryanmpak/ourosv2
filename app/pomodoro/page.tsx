@@ -1,7 +1,10 @@
-import Pomodoro from "../../components/Pomodoro"
+import Pomodoro from "../../components/Pomodoro";
+import { getDailyStreak } from "../actions/pomodoro";
 
-const PomodoroPage = () => {
-  return <Pomodoro />
-}
+const PomodoroPage = async () => {
+  const dailyStreak = await getDailyStreak();
 
-export default PomodoroPage
+  return <Pomodoro dailyStreak={dailyStreak} />;
+};
+
+export default PomodoroPage;

@@ -5,7 +5,6 @@ import { prisma } from "../../utils/prisma";
 
 export const getUser = async () => {
   const clerkUser = await currentUser();
-  console.log("clerkUser", clerkUser);
   if (!clerkUser) {
     return;
   }
