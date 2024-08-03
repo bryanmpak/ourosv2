@@ -23,6 +23,7 @@ model User {
   updatedAt           DateTime  @updatedAt
   
   linkRequest         AccountLink[]
+  letter              Letter[]
 
   @@index([userId], name: "by_userId")
 }
@@ -45,10 +46,12 @@ model AccountLink {
 
 model Letter {
   id                  String    @id @default(uuid())
-  userId              String    @unique
+  userId              String    
   content             Json      @db.Json    
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
+
+  user                User      @relation(fields: [userId], references: [userId])
 }
 
 model Timer {

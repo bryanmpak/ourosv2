@@ -14,10 +14,8 @@ export default function ImageGallery({
   /*
   TODO: 
     image gallery:
-    - make image gallery responsive, medium & lg size
     - cache images to rotate every refresh or set time
 
-    test timer
     test letters
 
     add subdomain for habits
