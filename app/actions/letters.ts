@@ -3,6 +3,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { prisma } from "../../utils/prisma";
 import { JSONContent } from "@tiptap/react";
+import { revalidatePath } from "next/cache";
 
 export const getRecentLetter = async () => {
   const user = await currentUser();
@@ -40,11 +41,8 @@ export const createLetter = async (content: JSONContent) => {
         userId: user.id,
       },
     });
+    return Promise.resolve("Letter sent!");
   } catch (error) {
-    // TODO: check the proper way to do error handling here (client-facing + dev-faving)
-    // throw new Error("unable to send letter, ");
-    throw new Error(error);
+    return Promise.reject("Unable to send letter. Please try again.");
   }
-
-  return "letter sent! :)";
 };

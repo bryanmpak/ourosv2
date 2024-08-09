@@ -5,25 +5,41 @@ import { JSONContent } from "@tiptap/react";
 import { toast } from "sonner";
 import TiptapEditor from "../../components/TiptapEditor";
 import { createLetter } from "../actions/letters";
+import { cn } from "../../utils/utils";
 
 export default function Write() {
   const [editorContent, setEditorContent] = useState<JSONContent>({
     type: "doc",
     content: [],
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
-    await createLetter(editorContent);
+    const promise = createLetter(editorContent);
 
-    // TODO: add a sonner toast notification based on response
-
-    // clear out editorContent state in success
-    setEditorContent({
-      type: "doc",
-      content: [],
+    toast.promise(promise, {
+      loading: "sending letter...",
+      success: "letter sent! 💋",
+      error: "failed to send. please send again!",
     });
+
+    promise
+      .then(() => {
+        // Clear out editorContent state on success
+        setEditorContent({
+          type: "doc",
+          content: [],
+        });
+      })
+      .catch((error) => {
+        console.error("Error sending letter:", error);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (
@@ -32,12 +48,15 @@ export default function Write() {
         editorContent={editorContent}
         setEditorContent={setEditorContent}
       />
-      {/* TODO: make this button more dynamic -> maybe loading state until completion */}
       <button
-        className="mt-4 h-10 w-1/4 border-neutral border-2 rounded-xl font-sans text-text text-sm hover:bg-neutral disabled:pointer-events-none ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-text focus-visible:ring-offset-1"
+        className={cn(
+          "mt-4 h-10 w-1/4 border-light bg-text border-2 rounded-xl font-sans text-nav_bg text-sm hover:bg-hover disabled:pointer-events-none ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-text focus-visible:ring-offset-1",
+          isSubmitting && "bg-title",
+          editorContent.content?.length === 0 && "bg-light"
+        )}
         type="submit"
       >
-        send ❤️
+        {isSubmitting ? "sending! ❤️" : "send ❤️"}
       </button>
     </form>
   );
