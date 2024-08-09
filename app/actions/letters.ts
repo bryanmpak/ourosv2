@@ -3,7 +3,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { prisma } from "../../utils/prisma";
 import { JSONContent } from "@tiptap/react";
-import { revalidatePath } from "next/cache";
 
 export const getRecentLetter = async () => {
   const user = await currentUser();
@@ -23,10 +22,10 @@ export const getRecentLetter = async () => {
   });
 
   if (!recentLetter) {
-    throw new Error("no letters found..");
+    return { message: "no letters found." };
   }
 
-  return recentLetter;
+  return recentLetter.content;
 };
 
 export const createLetter = async (content: JSONContent) => {
