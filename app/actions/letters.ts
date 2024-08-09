@@ -25,7 +25,7 @@ export const getRecentLetter = async () => {
     return { message: "no letters found." };
   }
 
-  return recentLetter.content;
+  return { content: JSON.stringify(recentLetter.content) };
 };
 
 export const createLetter = async (content: JSONContent) => {
