@@ -5,11 +5,10 @@ import { prisma } from "../../../utils/prisma";
 
 export async function POST(req: Request) {
   try {
-    // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
+    // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
     const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
     if (!WEBHOOK_SECRET) {
-      console.error("WEBHOOK_SECRET is not defined");
       throw new Error(
         "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
       );
@@ -23,7 +22,6 @@ export async function POST(req: Request) {
 
     // If there are no headers, error out
     if (!svix_id || !svix_timestamp || !svix_signature) {
-      console.error("Missing Svix headers");
       return new Response("Error occured -- no svix headers", {
         status: 400,
       });
@@ -52,23 +50,28 @@ export async function POST(req: Request) {
       });
     }
 
-    if (evt.type === "user.created") {
-      const { id, first_name } = evt.data;
+    // push id & name to db when user is created
+
+    const eventType = evt.type;
+
+    if (eventType === "user.created") {
+      const { id, first_name, last_name, image_url, ...attributes } = evt.data;
 
       try {
-        const user = await prisma.user.create({
+        await prisma.user.create({
           data: {
-            userId: id as string,
-            firstName: first_name as string,
+            userId: id,
+            name: first_name + " " + last_name,
+            firstName: first_name,
+            image: image_url,
           },
         });
-        // console.log("User created:", user)
       } catch (error) {
         console.error("Error creating user:", error);
       }
     }
 
-    return new Response("Successful push", { status: 200 });
+    return new Response("", { status: 200 });
   } catch (error) {
     console.error("Error handling webhook:", error);
     return new Response("Error occured", {
