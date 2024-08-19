@@ -7,10 +7,9 @@ export default async function Home() {
 
   // AWS S3:
   let photoUrls =
-    userFirstName === "Guest"
-      ? // "Photo", "Gallery", "For", "Logged-In", "Users :)"
-        []
-      : await getPhotos();
+    userFirstName === "Bryan" || userFirstName === "Mari"
+      ? await getPhotos()
+      : [];
 
   return (
     <>

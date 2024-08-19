@@ -25,7 +25,7 @@ export const getUserFirstName = async () => {
   const user = await prisma.user.findFirst({
     where: { userId: clerkUser.id },
   });
-  if (!user) {
+  if (!user?.firstName) {
     return "Guest";
   }
 
