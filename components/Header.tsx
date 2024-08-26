@@ -16,7 +16,7 @@ export default function Header() {
           {DATE && (
             <>
               <p>{DATE.getFullYear()}</p>
-              <p>{DATE.getMonth()}</p>
+              <p>{DATE.getMonth() + 1}</p>
             </>
           )}
         </div>

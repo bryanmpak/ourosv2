@@ -8,6 +8,7 @@ import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import { useAccountLinkStore } from "../hooks/useAccountLinkStore";
 import { User } from "@prisma/client";
 import { cn } from "../utils/utils";
+import { UrlObject } from "url";
 
 type NavbarProps = {
   user: User | null | undefined;
@@ -15,23 +16,41 @@ type NavbarProps = {
 
 export default function NavbarClient({ user }: NavbarProps) {
   const pathname = usePathname();
-  const navLinks = ["home", "pomodoro", "mail", "write", "habits", "momentos"];
+  const navLinks = ["home", "pomodoro", "mail", "write", "habits"]; // , "momentos"
   const accountLink = useAccountLinkStore();
   const { user: clerkUser, isLoaded: isClerkUserLoaded } = useUser();
 
+  const currentHost = typeof window !== "undefined" ? window.location.host : "";
+
   const navEl = navLinks.map((link, i) => {
-    const linkName = link === "home" ? "/" : `/${link}`;
+    let href: string | UrlObject;
+    let isActive: boolean;
+
+    if (link === "home") {
+      href = "/";
+      isActive = pathname === "/";
+    } else if (link === "habits") {
+      href = {
+        pathname: "/",
+        host: `habits.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`,
+      };
+      isActive = currentHost.startsWith("habits.");
+    } else {
+      href = `/${link}`;
+      isActive = pathname === `/${link}`;
+    }
+
     return (
       <Link
         key={i}
-        href={linkName}
+        href={href}
         className={cn(
           "flex flex-col justify-center w-10 h-10 bg-dark border-2 border-neutral rounded-2xl items-center md:hover:-translate-y-2 active:-translate-y-4 md:active:translate-y-0 duration-300 ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-text focus-visible:ring-offset-1",
-          pathname === linkName && "ring-[0.75px] ring-text"
+          isActive && "ring-[0.75px] ring-text"
         )}
       >
         {React.createElement(Icons[link])}
-        {pathname === linkName && (
+        {isActive && (
           <div className="w-[3px] h-[3px] rounded-full bg-title mt-[1px]"></div>
         )}
       </Link>

@@ -9,6 +9,7 @@ async function NavbarServer() {
 
 export default function Navbar() {
   return (
+    // TODO: this should be a skeleton
     <Suspense fallback={<div>Loading navbar...</div>}>
       {/* @ts-expect-error Server Component */}
       <NavbarServer />
