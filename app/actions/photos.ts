@@ -1,19 +1,13 @@
 import { ListObjectsV2Command, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import s3 from "../../utils/awsConfig";
-import { getRandomSubset } from "../../utils/getRandomSubset";
+import { unstable_cache } from "next/cache";
 
 const bucketName = "ouros";
 
-export async function getPhotos() {
-  console.log("Starting getPhotos function");
-  const params = {
-    Bucket: bucketName,
-  };
-
-  try {
-    console.log("Sending ListObjectsV2Command");
-    const command = new ListObjectsV2Command(params);
+const getAllSignedUrls = unstable_cache(
+  async () => {
+    const command = new ListObjectsV2Command({ Bucket: bucketName });
     const data = await s3.send(command);
 
     if (!data.Contents) {
@@ -21,34 +15,29 @@ export async function getPhotos() {
       return [];
     }
 
-    console.log(`Found ${data.Contents.length} objects in bucket`);
-
-    const urlsArray = await Promise.all(
+    const signedUrls = await Promise.all(
       data.Contents.map(async (item) => {
-        if (!item.Key) return "";
-        console.log(`Generating signed URL for ${item.Key}`);
+        if (!item.Key) return null;
         const command = new GetObjectCommand({
           Bucket: bucketName,
           Key: item.Key,
         });
-        const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
-        return url;
+        return getSignedUrl(s3, command, { expiresIn: 3600 });
       })
     );
 
-    const randomFive = getRandomSubset(
-      urlsArray.filter((url) => url !== ""),
-      5
-    );
-    console.log(`Returning ${randomFive.length} random URLs`);
-    return randomFive;
-  } catch (err) {
-    console.error("Error in getPhotos:", err);
-    if (err instanceof Error) {
-      console.error("Error name:", err.name);
-      console.error("Error message:", err.message);
-      console.error("Error stack:", err.stack);
-    }
-    return [];
-  }
+    return signedUrls.filter(Boolean) as string[];
+  },
+  ["s3-objects-full"],
+  { revalidate: 3600, tags: ["s3-objects"] }
+);
+
+export async function getRandomSignedUrls(count: number = 5) {
+  const allUrls = await getAllSignedUrls();
+
+  // Shuffle array
+  const shuffled = allUrls.sort(() => 0.5 - Math.random());
+
+  // Get sub-array of first n elements after shuffled
+  return shuffled.slice(0, count);
 }

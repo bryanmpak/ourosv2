@@ -1,6 +1,8 @@
-import { getPhotos } from "./actions/photos";
+import { getRandomSignedUrls } from "./actions/photos";
 import HomeClient from "../components/HomeClient";
 import { getUserFirstName } from "./actions/user";
+
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const userFirstName = await getUserFirstName();
@@ -8,7 +10,7 @@ export default async function Home() {
   // AWS S3:
   let photoUrls =
     userFirstName === "Bryan" || userFirstName === "Mari"
-      ? await getPhotos()
+      ? await getRandomSignedUrls(5)
       : [];
 
   return (

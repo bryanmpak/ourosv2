@@ -39,10 +39,8 @@ export default function RootLayout({
           >
             <Toaster position="top-center" />
             <ModalProvider />
-            <div className="min-h-full">
-              <div
-                className={`max-w-xl flex flex-col h-[90vh] xs:h-screen mx-auto`}
-              >
+            <div className="h-full">
+              <div className={`max-w-xl flex flex-col h-full mx-auto`}>
                 <Header />
                 <main className="flex-grow px-2 sm:px-6">{children}</main>
                 <div className="mt-auto px-2 py-4">
