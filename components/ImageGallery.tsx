@@ -16,11 +16,10 @@ export default function ImageGallery({
     image gallery:
     - cache images to rotate every refresh or set time
 
-    test letters
-
-    add subdomain for habits
     add subdomain for momentos
   */
+
+  console.log("Attempting to render image gallery", photoUrls);
 
   const imgEl = photoUrls.map((photo, i) => (
     <div
